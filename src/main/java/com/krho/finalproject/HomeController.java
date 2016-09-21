@@ -2,10 +2,11 @@ package com.krho.finalproject;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +16,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+
 import org.springframework.web.servlet.ModelAndView;
 
+import com.evdb.javaapi.data.Event;
+
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -45,6 +50,21 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/fireBase")
+	public String googleLogin() {
+		return "fireBase";
+	}
+	
+	@RequestMapping(value="/eventful")
+	public String eventfulResults(Model model) {
+		List <Event> result = Eventful.search("Detroit", "2016092100-2016092223", 20, 1);
+		model.addAttribute("results", result);
+		for(Event e : result){
+			System.out.println(e.getTitle());
+		}
+		return "eventfulResults";
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Map<String, Object> model) {
 		User user = new User();
@@ -96,17 +116,4 @@ public class HomeController {
 		
 		return new ModelAndView("results","finalQuery", buildQ.buildQuery());
 	}
-	
-	
-	
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public ModelAndView loginCheck(@Valid @ModelAttribute("userForm") User userForm,
-//            BindingResult result, Map<String, Object> model) {
-//		User testUser = DAO.checkForUser(userForm);
-//		if (testUser == null || 
-//		   (!testUser.getPassword().equals(userForm.getPassword()))) {
-//			return new ModelAndView("loginfailed","loginfailure", "Login failed.");
-//		}
-//		return new ModelAndView("welcome","username", userForm.getUsername());
-//	}
 }
