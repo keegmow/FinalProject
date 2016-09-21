@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/fireBase")
+	public String googleLogin() {
+		return "fireBase";
+	}
+	
 }

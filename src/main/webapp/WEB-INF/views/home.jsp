@@ -2,12 +2,15 @@
 <%@ page session="false" %>
 <html>
 <head>
+
 	<title>Home</title>
 </head>
 <body>
 <h1>
 	Hello world!  
 </h1>
+
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
