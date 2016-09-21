@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,11 @@ public class HomeController {
 		return "home";
 	}
 	
-
+	@RequestMapping(value = "/fireBase")
+	public String googleLogin() {
+		return "fireBase";
+	}
+	
 	@RequestMapping(value="/eventful")
 	public String eventfulResults(Model model) {
 		List <Event> result = Eventful.search("Detroit", "2016092100-2016092223", 20, 1);
