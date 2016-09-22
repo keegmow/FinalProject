@@ -149,16 +149,9 @@ public class HomeController {
 
 		
 		Activity activity = new Activity();
-		System.out.println(activity.buildQuery(actQuery));
+//		System.out.println(activity.buildQuery(actQuery));
 		List <Activity> activities = DAO.getActivities(activity.buildQuery(actQuery));
-		
-		System.out.println(actQuery.getAnswer1());
-		System.out.println(actQuery.getAnswer2());
-		System.out.println(actQuery.getAnswer3());
-		System.out.println(actQuery.getAnswer4());
-		System.out.println(actQuery.getAnswer5());
-		
-//		return new ModelAndView("results","finalQuery", buildQ.buildQuery());		
+	
 		return new ModelAndView("results","finalQuery", activities);
 	}
 	

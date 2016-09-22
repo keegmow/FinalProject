@@ -221,7 +221,7 @@ public class Activity {
 		if (paid == false) {
 			query = query + " and " + column9 + " = " + paid;
 		}
-		System.out.println("before DAO is called" + query);
+//		System.out.println("before DAO is called" + query);
 		return query;
 	}
 	
