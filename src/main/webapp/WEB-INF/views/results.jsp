@@ -15,7 +15,7 @@
 
 	<form:form method="post" action="activityChoice" commandName="">
 		<c:forEach items="${finalQuery}" var="act">
-    			<td><input type="submit" name="activityParam" value="${act.getActivityName()}" /></td>
+    			<td><input type="submit" name="activityParam" value="${act.getActivityName()}" /></td><br>
 		</c:forEach>
 	</form:form>
 
