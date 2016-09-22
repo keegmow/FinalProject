@@ -57,13 +57,33 @@ public class HomeController {
 		return "fireBase";
 	}
 	
-	@RequestMapping(value="/eventful")
-	public String eventfulResults(Model model) {
-		List <Event> result = Eventful.search("Detroit", "2016092100-2016092223", 20, 1);
+	@RequestMapping(value="/concerts")
+	public String eventfulConcerts(Model model) {
+		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "concert", 20, 1);
 		model.addAttribute("results", result);
-		for(Event e : result){
-			System.out.println(e.getTitle());
-		}
+//		for(Event e : result){
+//			System.out.println(e.getTitle());
+//		}
+		return "eventfulResults";
+	}
+	
+	@RequestMapping(value="/festivals")
+	public String eventfulFestivals(Model model) {
+		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "festival", 20, 1);
+		model.addAttribute("results", result);
+//		for(Event e : result){
+//			System.out.println(e.getTitle());
+//		}
+		return "eventfulResults";
+	}
+	
+	@RequestMapping(value="/sports")
+	public String eventfulSports(Model model) {
+		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "sport", 20, 1);
+		model.addAttribute("results", result);
+//		for(Event e : result){
+//			System.out.println(e.getTitle());
+//		}
 		return "eventfulResults";
 	}
 	

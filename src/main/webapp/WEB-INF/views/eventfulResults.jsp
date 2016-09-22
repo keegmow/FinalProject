@@ -20,6 +20,7 @@
 <c:out value="${i.getTitle()} "/><p>
 <c:out value="${i.getStartTime()}"/><p>
 <c:out value="${i.getVenue().getName()}"/><p>
+<c:out value="${i.getCategories().getName()}"/><p>
 <c:out value="${i.getURL()}"/><p>
 </c:forEach>
 </body>

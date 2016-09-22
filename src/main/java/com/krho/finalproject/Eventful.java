@@ -30,13 +30,15 @@ public class Eventful {
 		api.setEvdbPassword(APIConfigurationSettings.password);
 	}
 	
-	public static List<Event> search (String loc, String dates, int pageSize, int pageNumber) {
+	public static List<Event> search (String loc, String dates, String keywords, int pageSize, int pageNumber) {
 		if (api == null)
 			setup();
 		esr.setLocation(loc);
 		esr.setDateRange(dates);
 		esr.setPageSize(pageSize);
 		esr.setPageNumber(pageNumber);
+		esr.setKeywords(keywords);
+//		esr.setCategory(category);
 		// These 2 lines will set the timeout to 60 seconds.Normally not needed
 		// Unless you are using Google App Engine
 		esr.setConnectionTimeout(60000);  // Used with Google App Engine only
