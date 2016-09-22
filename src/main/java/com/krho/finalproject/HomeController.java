@@ -1,5 +1,6 @@
 package com.krho.finalproject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -63,6 +64,14 @@ public class HomeController {
 			System.out.println(e.getTitle());
 		}
 		return "eventfulResults";
+	}
+	
+	@RequestMapping(value="/movieshowtimes")
+	public String movieshowtimes(Model model) throws IOException {
+		MovieList result = MovieController.getMovieList();
+		List <Movie> movies = result.getMovie();
+		model.addAttribute("movies", movies);
+		return "movieshowtimes";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
