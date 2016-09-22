@@ -22,7 +22,7 @@ public class QueryBuilder {
 	public boolean interactive = false;
 	public boolean exercise = false;
 	//Fifth Question
-	public boolean free = false;
+	public boolean paid = false;
 	
 	Question quest = new Question();
 	
@@ -70,32 +70,54 @@ public class QueryBuilder {
 	}
 	private void setAnswer5Query(String answer) {
 		if (answer.equals(quest.getChoice5a())) {
-			free = true;
+			paid = true;
 		}
 	}
 	
 	public String buildQuery() {
 		
 		String column1 = "stayHome";
-		String column2 = "inside";
-		String column3 = "family";
-		String column4 = "friends";
-		String column5 = "myself";
-		String column6 = "potato";
-		String column7 = "interactive";
-		String column8 = "exercise";
-		String column9 = "paid";
+		String column2 = "Inside";
+		String column3 = "Family";
+		String column4 = "Friends";
+		String column5 = "Myself";
+		String column6 = "Potato";
+		String column7 = "Interactive";
+		String column8 = "Exercise";
+		String column9 = "Paid";
 		
-		String query = "WHERE " +
-					column1 + " = " + stayHome + ", " +
-					column2 + " = " + inside  + ", " +
-					column3 + " = " + family  + ", " +
-					column4 + " = " + friends  + ", " +
-					column5 + " = " + myself  + ", " +
-					column6 + " = " + potato  + ", " +
-					column7 + " = " + interactive  + ", " +
-					column8 + " = " + exercise  + ", " +
-					column9 + " = " + free;
+		String query = "WHERE " + column1 + " = " + stayHome +
+						" and " + column2 + " = " + inside;
+		
+		if (family = true) {
+			query = query + " and " + column3 + " = " + family;
+		} else if (friends = true) {
+			query = query + " and " + column4 + " = " + friends;
+		} else {
+			query = query + " and " + column5 + " = " + myself;
+		}
+		
+		if (potato = true) {
+			query = query + " and " + column6 + " = " + potato;
+		} else if (interactive = true) {
+			query = query + " and " + column7 + " = " + interactive;
+		} else {
+			query = query + " and " + column8 + " = " + exercise;
+		}
+		
+		query = query + " and " + column9 + " = " + paid;
+		
+		
+//		String query = "WHERE " +
+//					column1 + " = " + stayHome + " and " +
+//					column2 + " = " + inside  + " and " +
+//					column3 + " = " + family  + " and " +
+//					column4 + " = " + friends  + " and " +
+//					column5 + " = " + myself  + " and " +
+//					column6 + " = " + potato  + " and " +
+//					column7 + " = " + interactive  + " and " +
+//					column8 + " = " + exercise  + " and " +
+//					column9 + " = " + paid;
 					
 		return query;
 	}	

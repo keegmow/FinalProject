@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.krho.finalproject.Activity" table="activities">
+		<id name="id" column="ID" type="int">
+			<generator class="increment"></generator>
+		</id>
+	<!-- 	name = jave var name, column = DB column name -->
+		<property name="activityName" column="ActivityName" type="string"></property> 
+		<property name="stayHome" column="stayHome" type="boolean"></property>
+		<property name="inside" column="Inside" type="boolean"></property>
+		<property name="family" column="Family" type="boolean"></property>
+		<property name="friends" column="Friends" type="boolean"></property>
+		<property name="myself" column="Myself" type="boolean"></property>
+		<property name="potato" column="Potato" type="boolean"></property>
+		<property name="interactive" column="Interactive" type="boolean"></property>
+		<property name="exercise" column="Exercise" type="boolean"></property>
+		<property name="paid" column="Paid" type="boolean"></property>
+		
+	</class>
+</hibernate-mapping> 

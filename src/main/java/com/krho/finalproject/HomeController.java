@@ -22,11 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.evdb.javaapi.data.Event;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
+
 
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 @SessionAttributes("activityQuery")
 public class HomeController {
@@ -45,7 +46,7 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		
-		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("serverTime", formattedDate);
 		
 		return "home";
 	}
@@ -113,7 +114,10 @@ public class HomeController {
 									Map<String, Object> model) {
 		
 		QueryBuilder buildQ = new QueryBuilder(actQuery);
-		
-		return new ModelAndView("results","finalQuery", buildQ.buildQuery());
+		System.out.println(buildQ.buildQuery());
+		List <Activity> activities = DAO.getActivities(buildQ.buildQuery());
+
+//		return new ModelAndView("results","finalQuery", buildQ.buildQuery());		
+		return new ModelAndView("results","finalQuery", activities);
 	}
 }
