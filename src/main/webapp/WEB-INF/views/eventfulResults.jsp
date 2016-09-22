@@ -17,11 +17,10 @@
 <h1>Event Results</h1>
 <body>
 <c:forEach var="i" items="${results}">
-<c:out value="${i.getTitle()} "/><p>
-<c:out value="${i.getStartTime()}"/><p>
-<c:out value="${i.getVenue().getName()}"/><p>
-<c:out value="${i.getCategories().getName()}"/><p>
-<c:out value="${i.getURL()}"/><p>
+<c:out value="${i.getTitle()} "/><br>
+<c:out value="${i.getStartTime()}"/><br>
+<c:out value="${i.getVenue().getName()}"/><br>
+<a href = "${i.getURL()}">Event Page</a><br><br>
 </c:forEach>
 </body>
 </html>
