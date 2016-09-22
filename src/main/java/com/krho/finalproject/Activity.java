@@ -129,5 +129,100 @@ public class Activity {
 		this.paid = paid;
 	}
 	
+	Question quest = new Question();
+	
+
+	
+	private void setAnswer1Query(String answer) {
+		if (answer.equals(quest.getChoice1a())) {
+			stayHome = true;
+		}
+	}
+	private void setAnswer2Query(String answer) {
+		if (answer.equals(quest.getChoice2a())) {
+			inside = true;
+		}
+	}
+	private void setAnswer3Query(String answer) {
+		if (answer.equals(quest.getChoice3a())) 
+			family = true;
+		if (answer.equals(quest.getChoice3b())) 
+			friends = true;
+		if (answer.equals(quest.getChoice3c()))
+			myself = true;
+		
+	}
+	private void setAnswer4Query(String answer) {
+		if (answer.equals(quest.getChoice4a())) 
+			potato = true;
+		if (answer.equals(quest.getChoice4b())) 
+			interactive = true;
+		if (answer.equals(quest.getChoice4c())) 
+			exercise = true;
+		
+	}
+	private void setAnswer5Query(String answer) {
+		if (answer.equals(quest.getChoice5a())) {
+			paid = true;
+		}
+	}
+	
+	public String buildQuery(ActivityQuery finalQuery) {
+		
+		stayHome = false;
+		inside = false;
+		family = false;
+		friends = false;
+		myself = false;
+		potato = false;
+		interactive = false;
+		exercise = false;
+		paid = false;
+		
+		setAnswer1Query(finalQuery.getAnswer1());
+		setAnswer2Query(finalQuery.getAnswer2());
+		setAnswer3Query(finalQuery.getAnswer3());
+		setAnswer4Query(finalQuery.getAnswer4());
+		setAnswer5Query(finalQuery.getAnswer5());
+		
+		String column1 = "stayHome";
+		String column2 = "Inside";
+		String column3 = "Family";
+		String column4 = "Friends";
+		String column5 = "Myself";
+		String column6 = "Potato";
+		String column7 = "Interactive";
+		String column8 = "Exercise";
+		String column9 = "Paid";
+		
+		String query = "WHERE " + column1 + " = " + stayHome +
+						" and " + column2 + " = " + inside;
+		
+		if (family == true) {
+			query = query + " and " + column3 + " = " + family;
+		}
+		if (friends == true) {
+			query = query + " and " + column4 + " = " + friends;
+		}
+		if (myself == true) {
+			query = query + " and " + column5 + " = " + myself;
+		}
+		
+		if (potato == true) {
+			query = query + " and " + column6 + " = " + potato;
+		}
+		if (interactive == true) {
+			query = query + " and " + column7 + " = " + interactive;
+		}
+		if (exercise == true) {
+			query = query + " and " + column8 + " = " + exercise;
+		}
+		
+		if (paid == false) {
+			query = query + " and " + column9 + " = " + paid;
+		}
+		System.out.println("before DAO is called" + query);
+		return query;
+	}
 	
 }

@@ -3,11 +3,11 @@ package com.krho.finalproject;
 public class ActivityQuery {
 
 	private int queryId;
-	private String answer1;
-	private String answer2;
-	private String answer3;
-	private String answer4;
-	private String answer5;
+	private String answer1 = null;
+	private String answer2 = null;
+	private String answer3 = null;
+	private String answer4 = null;
+	private String answer5 = null;
 	
 	
 	public int getQueryId() {

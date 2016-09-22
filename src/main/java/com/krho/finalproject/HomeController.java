@@ -141,11 +141,18 @@ public class HomeController {
 	@RequestMapping(value = "/answer5", method = RequestMethod.POST)
 	public ModelAndView finalResults (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
-		
-		QueryBuilder buildQ = new QueryBuilder(actQuery);
-		System.out.println(buildQ.buildQuery());
-		List <Activity> activities = DAO.getActivities(buildQ.buildQuery());
 
+		
+		Activity activity = new Activity();
+		System.out.println(activity.buildQuery(actQuery));
+		List <Activity> activities = DAO.getActivities(activity.buildQuery(actQuery));
+		
+		System.out.println(actQuery.getAnswer1());
+		System.out.println(actQuery.getAnswer2());
+		System.out.println(actQuery.getAnswer3());
+		System.out.println(actQuery.getAnswer4());
+		System.out.println(actQuery.getAnswer5());
+		
 //		return new ModelAndView("results","finalQuery", buildQ.buildQuery());		
 		return new ModelAndView("results","finalQuery", activities);
 	}
