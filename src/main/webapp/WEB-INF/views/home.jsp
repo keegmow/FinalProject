@@ -7,11 +7,10 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Welcome to Bored!  
 </h1>
-
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-<P>  The time on the server is ${serverTime}. </P>
+<a href="fireBase/">
+<button type="button">Log In!</button>
+</a>
 </body>
 </html>
