@@ -13,9 +13,13 @@
 </head>
 <body>
 
-<c:forEach items="${finalQuery}" var="act">
-    ${act.getActivityName()}<br>
-</c:forEach>
+	<form:form method="post" action="activityChoice" commandName="">
+		<c:forEach items="${finalQuery}" var="act">
+    			<td><input type="submit" name="activityParam" value="${act.getActivityName()}" /></td>
+		</c:forEach>
+	</form:form>
+
+
 
 </body>
 </html>

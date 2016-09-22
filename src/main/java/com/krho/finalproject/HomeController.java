@@ -17,7 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.evdb.javaapi.data.Event;
@@ -128,5 +128,29 @@ public class HomeController {
 
 //		return new ModelAndView("results","finalQuery", buildQ.buildQuery());		
 		return new ModelAndView("results","finalQuery", activities);
+	}
+	
+	@RequestMapping(value = "activityChoice")
+	public String activityChoice (@RequestParam(value="activityParam")String activity, Model model) throws IOException {
+		if (activity.equalsIgnoreCase("Movie Theater")) {
+			MovieList result = MovieController.getMovieList();
+			List <Movie> movies = result.getMovie();
+			model.addAttribute("movies", movies);
+			return "movieshowtimes";
+		} else if (activity.equalsIgnoreCase("Festival")) {
+			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","festival", 20, 1);
+			model.addAttribute("results", result);
+			return "eventfulResults";
+		} else if (activity.equalsIgnoreCase("Concert")) {
+			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","concert", 20, 1);
+			model.addAttribute("results", result);
+			return "eventfulResults";
+		} else if (activity.equalsIgnoreCase("Sports Game")) {
+			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","sport", 20, 1);
+			model.addAttribute("results", result);
+			return "eventfulResults";
+		} else {
+			return "home";
+		}
 	}
 }

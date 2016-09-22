@@ -105,8 +105,9 @@ public class QueryBuilder {
 			query = query + " and " + column8 + " = " + exercise;
 		}
 		
-		query = query + " and " + column9 + " = " + paid;
-		
+		if (paid = false) {
+			query = query + " and " + column9 + " = " + paid;
+		}
 		
 //		String query = "WHERE " +
 //					column1 + " = " + stayHome + " and " +
