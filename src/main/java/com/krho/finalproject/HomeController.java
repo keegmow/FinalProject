@@ -150,27 +150,36 @@ public class HomeController {
 		return new ModelAndView("results","finalQuery", activities);
 	}
 	
+	 @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+	    public ModelAndView method() {
+		 String projectUrl = "https://www.google.com/#q=" ;
+	            return new ModelAndView("redirect:" + projectUrl);
+
+	    }
+	
 	@RequestMapping(value = "activityChoice")
-	public String activityChoice (@RequestParam(value="activityParam")String activity, Model model) throws IOException {
+	public ModelAndView activityChoice (@RequestParam(value="activityParam")String activity, Model model) throws IOException {
 		if (activity.equalsIgnoreCase("Movie Theater")) {
 			MovieList result = MovieController.getMovieList();
 			List <Movie> movies = result.getMovie();
 			model.addAttribute("movies", movies);
-			return "movieshowtimes";
+			return new ModelAndView("movieshowtimes");
 		} else if (activity.equalsIgnoreCase("Festival")) {
 			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","festival", 20, 1);
 			model.addAttribute("results", result);
-			return "eventfulResults";
+			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Concert")) {
 			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","concert", 20, 1);
 			model.addAttribute("results", result);
-			return "eventfulResults";
+			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
 			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","sport", 20, 1);
 			model.addAttribute("results", result);
-			return "eventfulResults";
-		} else {
-			return "home";
+			return new ModelAndView("eventfulResults");
+		} 
+		else { 
+			String projectUrl = "https://www.google.com/#q=" + activity ;
+            return new ModelAndView("redirect:" + projectUrl);
 		}
 	}
 }
