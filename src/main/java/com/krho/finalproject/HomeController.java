@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 //import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -116,13 +118,15 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/querystart", method = RequestMethod.GET)
-	public ModelAndView startQuery (@ModelAttribute("userForm") User userForm, 
+	@RequestMapping(value = "/zipcode", method = RequestMethod.GET)
+	public ModelAndView startQuery (@ModelAttribute("userForm") User userForm,
+									@Valid @ModelAttribute("activityQuery") ActivityQuery actQuery,
+									BindingResult result,
 									Map<String, Object> model) {
-//		ActivityQuery actQuery = ActivityQuery.getInstance();
-		ActivityQuery actQuery = new ActivityQuery();
-		
-		model.put("activityQuery", actQuery);
+        if (result.hasErrors()) {
+        	System.out.println(result);
+            return new ModelAndView("location");
+        }
 		
 		return new ModelAndView("querystart","activityQuery", actQuery);
 	}
@@ -205,4 +209,19 @@ public class HomeController {
             return new ModelAndView("redirect:" + projectUrl);
 		}
 	}
+
+		
+	@RequestMapping(value="location")
+	public ModelAndView enterZipcode( Map<String,Object> model) {
+		
+		ActivityQuery actQuery = new ActivityQuery();
+		
+		model.put("activityQuery", actQuery);
+		
+		return new ModelAndView("location", "activityQuery", actQuery);
+	}
+	
+		
+		
+	
 }
