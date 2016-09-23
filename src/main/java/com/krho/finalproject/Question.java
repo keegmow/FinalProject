@@ -4,6 +4,9 @@ public class Question {
 	public String prompt1 = "Where do you want to be?";
 	public String choice1a = "I want to stay home.";
 	public String choice1b = "I want to get out.";
+	
+	//Random query choice.
+	public String supriseMe = "Suprise Me!";
 
 	public String prompt2 = "Do you want to be indoors or outdoors?";
 	public String choice2a = "I want to stay indoors.";
@@ -126,6 +129,9 @@ public class Question {
 //	public void setChoice5b(String choice5b) {
 //		this.choice5b = choice5b;
 //	}
-
+	
+	public String getSupriseMe() {
+		return supriseMe;
+	}
 	
 }

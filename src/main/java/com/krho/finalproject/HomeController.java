@@ -2,15 +2,15 @@ package com.krho.finalproject;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 
-//import javax.validation.Valid;
+
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +56,8 @@ public class HomeController {
 //		return "home";
 //	}
 	
+	Question quest = new Question();
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		
@@ -79,7 +81,9 @@ public class HomeController {
 	
 	@RequestMapping(value="/concerts")
 	public String eventfulConcerts(Model model) {
-		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "concert", 20, 1);
+
+		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "concert", 20, 1);
+
 		model.addAttribute("results", result);
 //		for(Event e : result){
 //			System.out.println(e.getTitle());
@@ -89,7 +93,9 @@ public class HomeController {
 	
 	@RequestMapping(value="/festivals")
 	public String eventfulFestivals(Model model) {
-		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "festival", 20, 1);
+
+		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "festival", 20, 1);
+
 		model.addAttribute("results", result);
 //		for(Event e : result){
 //			System.out.println(e.getTitle());
@@ -99,7 +105,9 @@ public class HomeController {
 	
 	@RequestMapping(value="/sports")
 	public String eventfulSports(Model model) {
-		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "sport", 20, 1);
+
+		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "sport", 20, 1);
+
 		model.addAttribute("results", result);
 //		for(Event e : result){
 //			System.out.println(e.getTitle());
@@ -122,43 +130,52 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/querystart", method = RequestMethod.GET)
-	public ModelAndView startQuery (@ModelAttribute("userForm") User userForm, 
+	@RequestMapping(value = "/zipcode", method = RequestMethod.GET)
+	public ModelAndView startQuery (@ModelAttribute("userForm") User userForm,
+									@Valid @ModelAttribute("activityQuery") ActivityQuery actQuery,
+									BindingResult result,
 									Map<String, Object> model) {
-//		ActivityQuery actQuery = ActivityQuery.getInstance();
-		ActivityQuery actQuery = new ActivityQuery();
-		
-		model.put("activityQuery", actQuery);
+        if (result.hasErrors()) {
+        	System.out.println(result);
+            return new ModelAndView("location");
+        }
 		
 		return new ModelAndView("querystart","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer1", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer1", method = RequestMethod.GET)
 	public ModelAndView query2 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		
-		return new ModelAndView("query2","activityQuery", actQuery);
+		if (actQuery.getAnswer1().equals(quest.supriseMe)) {
+			ModelAndView suprise = finalResults(actQuery, model);
+			return suprise;
+		} else if (actQuery.getAnswer1().equals(quest.choice1a)) {
+			return new ModelAndView("query3","activityQuery", actQuery);
+		} else {
+			return new ModelAndView("query2","activityQuery", actQuery);
+		}
 	}
 	
-	@RequestMapping(value = "/answer2", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer2", method = RequestMethod.GET)
 	public ModelAndView query3 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		return new ModelAndView("query3","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer3", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer3", method = RequestMethod.GET)
 	public ModelAndView query4 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		return new ModelAndView("query4","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer4", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer4", method = RequestMethod.GET)
 	public ModelAndView query5 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		return new ModelAndView("query5","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer5", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer5", method = RequestMethod.GET)
 	public ModelAndView finalResults (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 
@@ -166,6 +183,8 @@ public class HomeController {
 		Activity activity = new Activity();
 //		System.out.println(activity.buildQuery(actQuery));
 		List <Activity> activities = DAO.getActivities(activity.buildQuery(actQuery));
+		
+		Collections.shuffle(activities);
 	
 		return new ModelAndView("results","finalQuery", activities);
 	}
@@ -185,15 +204,15 @@ public class HomeController {
 			model.addAttribute("movies", movies);
 			return new ModelAndView("movieshowtimes");
 		} else if (activity.equalsIgnoreCase("Festival")) {
-			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","festival", 20, 1);
+			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Concert")) {
-			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","concert", 20, 1);
+			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
-			List <Event> result = Eventful.search("Detroit", "2016092100-2016092223","sport", 20, 1);
+			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} 
@@ -202,4 +221,19 @@ public class HomeController {
             return new ModelAndView("redirect:" + projectUrl);
 		}
 	}
+
+		
+	@RequestMapping(value="location")
+	public ModelAndView enterZipcode( Map<String,Object> model) {
+		
+		ActivityQuery actQuery = new ActivityQuery();
+		
+		model.put("activityQuery", actQuery);
+		
+		return new ModelAndView("location", "activityQuery", actQuery);
+	}
+	
+		
+		
+	
 }

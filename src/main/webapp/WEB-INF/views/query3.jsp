@@ -8,25 +8,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Query 3</title>
-</head>
 <jsp:useBean id="Question" class="com.krho.finalproject.Question">  
 </jsp:useBean>  
 <jsp:setProperty property="*" name="Question"/>
+<title>${Question.prompt3}</title>
+</head>
 <body>
 <div align="left">
 	<h2><c:out value="${Question.prompt3}"></c:out></h2>
 	
-	<form:form method="post" action="answer3" commandName="activityQuery">
-	      Answer:
+	<form:form method="get" action="answer3" commandName="activityQuery">
+	      
 	      <br>
-	      <form:radiobutton path="answer3" value="${Question.choice3a}" label="${Question.choice3a}" />      
+	      <%-- <form:radiobutton path="answer3" value="${Question.choice3a}" label="${Question.choice3a}" /> --%>
+	      <input type="submit" name="answer3" value="${Question.choice3a}" />      
 	      <br>
-	      <form:radiobutton path="answer3" value="${Question.choice3b}" label="${Question.choice3b}" />
+	      <%-- <form:radiobutton path="answer3" value="${Question.choice3b}" label="${Question.choice3b}" /> --%>
+	      <input type="submit" name="answer3" value="${Question.choice3b}" />
 	      <br>
-	      <form:radiobutton path="answer3" value="${Question.choice3c}" label="${Question.choice3c}" />
+	      <%-- <form:radiobutton path="answer3" value="${Question.choice3c}" label="${Question.choice3c}" /> --%>
+	      <input type="submit" name="answer1" value="${Question.choice3c}" />
 	      <br>
-		<input type="submit" value="Submit"/>
+		<!-- <input type="submit" value="Submit"/> -->
         </form:form>
 
     </div>

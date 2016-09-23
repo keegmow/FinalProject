@@ -8,15 +8,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Results</title>
 </head>
 <body>
 
-	<form:form method="post" action="activityChoice" commandName="">
-		<c:forEach items="${finalQuery}" var="act">
+	<form:form method="get" action="activityChoice" commandName="">
+		<c:forEach items="${finalQuery}" var="act" end="5">
     			<td><input type="submit" name="activityParam" value="${act.getActivityName()}" /></td><br>
 		</c:forEach>
+		<br>
+		<c:if test="${finalQuery.size() > 5}">
+		<input type="button" value="More Ideas" onClick="window.location.reload()">
+		</c:if>
+		
 	</form:form>
 
 

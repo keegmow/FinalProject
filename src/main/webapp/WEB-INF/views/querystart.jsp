@@ -8,23 +8,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Query 1</title>
-</head>
 <jsp:useBean id="Question" class="com.krho.finalproject.Question">  
 </jsp:useBean>  
 <jsp:setProperty property="*" name="Question"/>
+<title>${Question.prompt1}</title>
+</head>
 <body>
 <div align="left">
 	<h2><c:out value="${Question.prompt1}"></c:out></h2>
 	
-	<form:form method="post" action="answer1" commandName="activityQuery">
-	      Answer:
+	<form:form method="get" action="answer1" commandName="activityQuery">
+	     
 	    <br>
-	      <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" />
+	      <%-- <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
+	      <input type="submit" name="answer1" value="${Question.choice1a}" />
 	    <br>
-	      <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" />
+	      <%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
+	      <input type="submit" name="answer1" value="${Question.choice1b}" />
 		<br>
-		<input type="submit" value="Submit"/>
+		<br>
+		  <input type="submit" name="answer1" value="${Question.supriseMe}" />
+		<!-- <input type="submit" value="Submit"/> -->
         </form:form>
 
     </div>

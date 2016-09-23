@@ -136,7 +136,7 @@ public class Activity {
 	private void setAnswer1Query(String answer) {
 		if (answer.equals(quest.getChoice1a())) {
 			stayHome = true;
-		}
+		} 
 	}
 	private void setAnswer2Query(String answer) {
 		if (answer.equals(quest.getChoice2a())) {
@@ -180,10 +180,19 @@ public class Activity {
 		paid = false;
 		
 		setAnswer1Query(finalQuery.getAnswer1());
-		setAnswer2Query(finalQuery.getAnswer2());
-		setAnswer3Query(finalQuery.getAnswer3());
-		setAnswer4Query(finalQuery.getAnswer4());
-		setAnswer5Query(finalQuery.getAnswer5());
+		
+		if (finalQuery.getAnswer2() != null) {
+			setAnswer2Query(finalQuery.getAnswer2());
+		}
+		if (finalQuery.getAnswer3() != null) {
+			setAnswer3Query(finalQuery.getAnswer3());
+		}
+		if (finalQuery.getAnswer4() != null) {
+			setAnswer4Query(finalQuery.getAnswer4());
+		}
+		if (finalQuery.getAnswer5() != null) {
+			setAnswer5Query(finalQuery.getAnswer5());
+		}
 		
 		String column1 = "stayHome";
 		String column2 = "Inside";
@@ -197,6 +206,9 @@ public class Activity {
 		
 		String query = "WHERE " + column1 + " = " + stayHome +
 						" and " + column2 + " = " + inside;
+		
+		
+		
 		
 		if (family == true) {
 			query = query + " and " + column3 + " = " + family;
@@ -220,6 +232,10 @@ public class Activity {
 		
 		if (paid == false) {
 			query = query + " and " + column9 + " = " + paid;
+		}
+		
+		if(finalQuery.getAnswer1().equals(quest.supriseMe)) {
+			query = "";
 		}
 //		System.out.println("before DAO is called" + query);
 		return query;
