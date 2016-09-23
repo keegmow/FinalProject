@@ -64,7 +64,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/concerts")
 	public String eventfulConcerts(Model model) {
-		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "concert", 20, 1);
+		List <Event> result = Eventful.search("Detroit", "2016092400-2016092823", "concert", 20, 1);
 		model.addAttribute("results", result);
 //		for(Event e : result){
 //			System.out.println(e.getTitle());
@@ -74,7 +74,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/festivals")
 	public String eventfulFestivals(Model model) {
-		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "festival", 20, 1);
+		List <Event> result = Eventful.search("Detroit", "2016092500-2016092823", "festival", 20, 1);
 		model.addAttribute("results", result);
 //		for(Event e : result){
 //			System.out.println(e.getTitle());
@@ -84,7 +84,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/sports")
 	public String eventfulSports(Model model) {
-		List <Event> result = Eventful.search("Detroit", "2016092300-2016092523", "sport", 20, 1);
+		List <Event> result = Eventful.search("Detroit", "2016092400-2016092823", "sport", 20, 1);
 		model.addAttribute("results", result);
 //		for(Event e : result){
 //			System.out.println(e.getTitle());
