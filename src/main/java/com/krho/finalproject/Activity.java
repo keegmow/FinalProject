@@ -180,7 +180,9 @@ public class Activity {
 		paid = false;
 		
 		setAnswer1Query(finalQuery.getAnswer1());
-		setAnswer2Query(finalQuery.getAnswer2());
+		if (finalQuery.getAnswer2() != null) {
+			setAnswer2Query(finalQuery.getAnswer2());
+		}
 		setAnswer3Query(finalQuery.getAnswer3());
 		setAnswer4Query(finalQuery.getAnswer4());
 		setAnswer5Query(finalQuery.getAnswer5());

@@ -9,11 +9,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Results</title>
 </head>
 <body>
 
-	<form:form method="post" action="activityChoice" commandName="">
+	<form:form method="get" action="activityChoice" commandName="">
 		<c:forEach items="${finalQuery}" var="act">
     			<td><input type="submit" name="activityParam" value="${act.getActivityName()}" /></td><br>
 		</c:forEach>

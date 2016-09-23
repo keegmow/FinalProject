@@ -52,6 +52,8 @@ public class HomeController {
 //		return "home";
 //	}
 	
+	Question quest = new Question();
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		
@@ -124,38 +126,42 @@ public class HomeController {
 		return new ModelAndView("querystart","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer1", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer1", method = RequestMethod.GET)
 	public ModelAndView query2 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		
-		return new ModelAndView("query2","activityQuery", actQuery);
+		if (actQuery.getAnswer1().equals(quest.choice1a)) {
+			return new ModelAndView("query3","activityQuery", actQuery);
+		} else {
+			return new ModelAndView("query2","activityQuery", actQuery);
+		}
 	}
 	
-	@RequestMapping(value = "/answer2", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer2", method = RequestMethod.GET)
 	public ModelAndView query3 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		return new ModelAndView("query3","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer3", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer3", method = RequestMethod.GET)
 	public ModelAndView query4 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		return new ModelAndView("query4","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer4", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer4", method = RequestMethod.GET)
 	public ModelAndView query5 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		return new ModelAndView("query5","activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value = "/answer5", method = RequestMethod.POST)
+	@RequestMapping(value = "/answer5", method = RequestMethod.GET)
 	public ModelAndView finalResults (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 
 		
 		Activity activity = new Activity();
-//		System.out.println(activity.buildQuery(actQuery));
+		System.out.println(activity.buildQuery(actQuery));
 		List <Activity> activities = DAO.getActivities(activity.buildQuery(actQuery));
 	
 		return new ModelAndView("results","finalQuery", activities);
