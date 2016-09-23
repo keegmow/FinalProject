@@ -67,7 +67,7 @@ public class HomeController {
 	@RequestMapping(value="/concerts")
 	public String eventfulConcerts(Model model) {
 
-		List <Event> result = Eventful.search("Detroit", Key.TODAY2 +"00-" + Key.TODAY + "23", "concert", 20, 1);
+		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "concert", 20, 1);
 
 		model.addAttribute("results", result);
 //		for(Event e : result){
@@ -79,7 +79,7 @@ public class HomeController {
 	@RequestMapping(value="/festivals")
 	public String eventfulFestivals(Model model) {
 
-		List <Event> result = Eventful.search("Detroit", Key.TODAY2 +"00-" + Key.TODAY + "23", "festival", 20, 1);
+		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "festival", 20, 1);
 
 		model.addAttribute("results", result);
 //		for(Event e : result){
@@ -91,7 +91,7 @@ public class HomeController {
 	@RequestMapping(value="/sports")
 	public String eventfulSports(Model model) {
 
-		List <Event> result = Eventful.search("Detroit", Key.TODAY2 +"00-" + Key.TODAY + "23", "sport", 20, 1);
+		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "sport", 20, 1);
 
 		model.addAttribute("results", result);
 //		for(Event e : result){
@@ -182,15 +182,15 @@ public class HomeController {
 			model.addAttribute("movies", movies);
 			return new ModelAndView("movieshowtimes");
 		} else if (activity.equalsIgnoreCase("Festival")) {
-			List <Event> result = Eventful.search("Detroit", Key.TODAY2 +"00-" + Key.TODAY + "23","festival", 20, 1);
+			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Concert")) {
-			List <Event> result = Eventful.search("Detroit", Key.TODAY2 +"00-" + Key.TODAY + "23","concert", 20, 1);
+			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
-			List <Event> result = Eventful.search("Detroit", Key.TODAY2 +"00-" + Key.TODAY + "23","sport", 20, 1);
+			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} 

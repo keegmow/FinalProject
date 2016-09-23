@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.evdb.javaapi.APIConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.krho.secret.APIConfigurationSettings;
 
 
 public class MovieController {
@@ -39,7 +41,7 @@ public class MovieController {
 	public static MovieList getMovieList() throws IOException {
 		
 		// get JSON result from the API and provide some custom parameters 
-		String movieJason = "{\"movie\":" + MovieController.httpGet("http://data.tmsapi.com/v1.1/movies/showings?startDate="+ Key.TODAY + "&zip="+ Key.ZIPCODE +"&api_key=" + Key.KEY_ID) + "}";
+		String movieJason = "{\"movie\":" + MovieController.httpGet("http://data.tmsapi.com/v1.1/movies/showings?startDate="+ APISetDate.TODAY + "&zip="+ APISetDate.ZIPCODE +"&api_key=" + APIConfigurationSettings.KEY_ID) + "}";
 		
 		ObjectMapper mapper=new ObjectMapper();
 		

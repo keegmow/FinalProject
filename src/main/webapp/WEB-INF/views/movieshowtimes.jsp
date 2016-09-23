@@ -23,7 +23,7 @@
 <h3>Description: </h3> <c:out value="${i.getLongDescription() }"/><p>
 <h3>Genres: </h3> <c:out value="${i.getGenres() }"/><p>
 <h3>TopCast: </h3> <c:out value="${i.getTopCast() }"/><p>
-<h3>OfficialUrl: </h3> <c:out value="${i.getOfficialUrl() }"/><p>
+<h3>OfficialUrl: </h3> <a href="<c:out value="${i.getOfficialUrl() }"/>">click here</a>
 <h3>Showtimes: </h3> <c:out value="${i.getShowtimes() }"/><p>
 </c:forEach>
 </body>
