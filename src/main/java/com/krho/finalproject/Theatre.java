@@ -49,7 +49,7 @@ this.name = name;
 
 @Override
 public String toString(){
-	return "Theater Name: " + name +"\n";
+	return "ID: "+ id +" Theater Name: " + name + "\n";
 }
 
 public Map<String, Object> getAdditionalProperties() {
