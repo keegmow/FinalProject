@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 //import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -14,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +34,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 
 @Controller
-@SessionAttributes("activityQuery")
+@SessionAttributes("activityQuery, userloggedin")
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -57,9 +61,20 @@ public class HomeController {
 		
 		return "home";
 	}
-	@RequestMapping(value = "/fireBase")
-	public String googleLogin() {
-		return "fireBase";
+	
+	@RequestMapping(value = "/fireBase", method = RequestMethod.GET)
+//	public String googleLogin(HttpServletResponse response, @CookieValue("foo") String fooCookie, @RequestParam(value = "loggedIn", defaultValue = "false", required = false) String loggedIn) {
+	public ModelAndView googleLogin(@RequestParam(value = "loggedIn", required = false) String loggedIn, @ModelAttribute("userloggedin") String userattribute) {
+		//check if user is logged in
+		if(userattribute != null){
+			if(!userattribute.equalsIgnoreCase("false")){
+				return new ModelAndView("redirect:/querystart", "userloggedin", userattribute);
+			}
+		}
+		
+		System.out.println("deBug: " + loggedIn);
+		
+		return new ModelAndView("fireBase","userloggedin", loggedIn);
 	}
 	
 	@RequestMapping(value="/concerts")

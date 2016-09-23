@@ -9,9 +9,11 @@
 <body>
 
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
 <script>
+
   // Initialize Firebase
- var config = {
+  var config = {
     apiKey: "AIzaSyCJNSDP8yBQ4KrGOeLyYYD5r5J9tNR6kUk",
     authDomain: "finalproject-143812.firebaseapp.com",
     databaseURL: "https://finalproject-143812.firebaseio.com",
@@ -19,9 +21,6 @@
     messagingSenderId: "192614973989"
   };
   firebase.initializeApp(config);
-</script>
-<script>
-
 
 var provider = new firebase.auth.GoogleAuthProvider();
 var userData;
@@ -30,7 +29,7 @@ provider.addScope('https://www.googleapis.com/auth/plus.login');
 firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
 		var userDataArray = user.providerData;
-		console.log(userDataArray[0]);
+		//console.log(userDataArray[0]);
 		if(userDataArray.length > 0){
 			console.log("Ok");
 			userData = userDataArray[0];
@@ -40,20 +39,37 @@ firebase.auth().onAuthStateChanged(function(user) {
 			console.log(userData.photoURL);
 			console.log(userData.providerId);
 			console.log(userData.uid);
-			displayData(userData.displayName, userData.email, userData.photoURL,  userData.providerId, userData.uid);
+			//displayData(userData.displayName, userData.email, userData.photoURL,  userData.providerId, userData.uid);
 		}
-		
-	    // User is signed in.
+		console.log("Ready!!!!!");
+	    // User is signed in. notify server
+		//window.location.replace("../firebase");
+		 ajaxCall(userData.displayName);
 	  } else {
 		  console.log("User not logged in. " + user);
 		  login();
 	    // No user is signed in.
 	  }
 	});
-function login(){console.log("Hello");
+	/*
+	* Ajax call to pass login parameter to controller 
+	*/
+	function ajaxCall(param1){
+		 var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      console.log("ajax!!");
+		    }
+		  };
+		  xhttp.open("GET", "../fireBase/?loggedIn=" + param1, true);
+		  xhttp.send();
+	}
+function login(){
+	console.log("Hello");
 firebase.auth().signInWithRedirect(provider);
 
 }
+
 firebase.auth().getRedirectResult().then(function(result) {
 	  if (result.credential) {
 	    // This gives you a Google Access Token. You can use it to access the Google API.
@@ -61,6 +77,7 @@ firebase.auth().getRedirectResult().then(function(result) {
 		  // The signed-in user info.
 		  var user = result.user;
 		  //potentially here you want to now redirect to your query start, passing the relevant user info on
+		  
 		  window.location = "../querystart";
 	  
 	    // ...
