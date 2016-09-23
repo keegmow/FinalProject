@@ -26,6 +26,8 @@
 	      <%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
 	      <input type="submit" name="answer1" value="${Question.choice1b}" />
 		<br>
+		<br>
+		  <input type="submit" name="answer1" value="${Question.supriseMe}" />
 		<!-- <input type="submit" value="Submit"/> -->
         </form:form>
 

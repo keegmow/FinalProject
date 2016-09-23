@@ -2,6 +2,7 @@ package com.krho.finalproject;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -130,7 +131,10 @@ public class HomeController {
 	public ModelAndView query2 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		
-		if (actQuery.getAnswer1().equals(quest.choice1a)) {
+		if (actQuery.getAnswer1().equals(quest.supriseMe)) {
+			ModelAndView suprise = finalResults(actQuery, model);
+			return suprise;
+		} else if (actQuery.getAnswer1().equals(quest.choice1a)) {
 			return new ModelAndView("query3","activityQuery", actQuery);
 		} else {
 			return new ModelAndView("query2","activityQuery", actQuery);
@@ -161,8 +165,10 @@ public class HomeController {
 
 		
 		Activity activity = new Activity();
-		System.out.println(activity.buildQuery(actQuery));
+//		System.out.println(activity.buildQuery(actQuery));
 		List <Activity> activities = DAO.getActivities(activity.buildQuery(actQuery));
+		
+		Collections.shuffle(activities);
 	
 		return new ModelAndView("results","finalQuery", activities);
 	}

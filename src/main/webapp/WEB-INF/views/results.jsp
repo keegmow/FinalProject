@@ -14,9 +14,14 @@
 <body>
 
 	<form:form method="get" action="activityChoice" commandName="">
-		<c:forEach items="${finalQuery}" var="act">
+		<c:forEach items="${finalQuery}" var="act" end="5">
     			<td><input type="submit" name="activityParam" value="${act.getActivityName()}" /></td><br>
 		</c:forEach>
+		<br>
+		<c:if test="${finalQuery.size() > 5}">
+		<input type="button" value="More Ideas" onClick="window.location.reload()">
+		</c:if>
+		
 	</form:form>
 
 
