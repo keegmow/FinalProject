@@ -5,9 +5,9 @@ public class Question {
 	public String choice1a = "I want to stay home.";
 	public String choice1b = "I want to get out.";
 
-	public String prompt2 = "Do you want to be inside or out?";
-	public String choice2a = "I want to stay inside.";
-	public String choice2b = "I want to go outside.";
+	public String prompt2 = "Do you want to be indoors or outdoors?";
+	public String choice2a = "I want to stay indoors.";
+	public String choice2b = "I want to go outdoors.";
 	
 	public String prompt3 = "Who are you with?";
 	public String choice3a = "Family";
