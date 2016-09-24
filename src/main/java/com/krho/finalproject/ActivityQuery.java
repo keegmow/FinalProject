@@ -16,10 +16,18 @@ public class ActivityQuery {
 	
 	@NotNull(message = "Please enter 5 digit zipcode")
 	@Size(min=5, max=5, message = "Please enter 5 digit zipcode")
-	private String zipcode;
+	private String zipcode = null;
 	
+	private String displayName = null;
 	
-	
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
 	public String getZipcode() {
 		return zipcode;
 	}

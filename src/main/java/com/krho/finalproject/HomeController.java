@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -34,7 +32,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 
 @Controller
-@SessionAttributes("activityQuery, userloggedin")
+@SessionAttributes({"activityQuery", "userloggedin"})
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -59,24 +57,51 @@ public class HomeController {
 	Question quest = new Question();
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		
-		return "home";
+	public ModelAndView home(Map <String, Object> model) {
+		String userloggedin = "false";
+		model.put("userloggedin", userloggedin);
+		return new ModelAndView("home", "userloggedin", userloggedin);
 	}
 	
-	@RequestMapping(value = "/fireBase", method = RequestMethod.GET)
-//	public String googleLogin(HttpServletResponse response, @CookieValue("foo") String fooCookie, @RequestParam(value = "loggedIn", defaultValue = "false", required = false) String loggedIn) {
-	public ModelAndView googleLogin(@RequestParam(value = "loggedIn", required = false) String loggedIn, @ModelAttribute("userloggedin") String userattribute) {
-		//check if user is logged in
-		if(userattribute != null){
-			if(!userattribute.equalsIgnoreCase("false")){
-				return new ModelAndView("redirect:/querystart", "userloggedin", userattribute);
-			}
+//	@RequestMapping(value = "/fireBase", method = RequestMethod.GET)
+////	public String googleLogin(HttpServletResponse response, @CookieValue("foo") String fooCookie, @RequestParam(value = "loggedIn", defaultValue = "false", required = false) String loggedIn) {
+//	public ModelAndView googleLogin(@RequestParam(value = "loggedIn", required = false) String loggedIn, @ModelAttribute("userloggedin") String userattribute) {
+//		//check if user is logged in
+//		if(userattribute != null){
+//			if(!userattribute.equalsIgnoreCase("false")){
+//				return new ModelAndView("redirect:/querystart", "userloggedin", userattribute);
+//			}
+//		}
+//		
+//		System.out.println("deBug: " + loggedIn);
+//		loggedIn = "false";
+//		return new ModelAndView("fireBase","userloggedin", loggedIn);
+//	}
+	@RequestMapping(value = "/fireBase")
+	public ModelAndView googleLogin(@ModelAttribute("userloggedin") String userLogged, @RequestParam(value="loggedIn", defaultValue="false", required=false) String loggedIn) {
+		if (!loggedIn.equals("false")) {
+			userLogged = loggedIn;
+		}
+		System.out.println("loggedIn: " + loggedIn);
+		System.out.println("userLogged: " + userLogged);
+		if (userLogged.equals("false")) {
+			return new ModelAndView("fireBase");			
+		} else {
+			return new ModelAndView("location", "userloggedin", userLogged);
 		}
 		
-		System.out.println("deBug: " + loggedIn);
+	}
+	
+	@RequestMapping(value="location")
+	public ModelAndView enterZipcode( Map<String,Object> model, @ModelAttribute("userloggedin") String displayName) {
 		
-		return new ModelAndView("fireBase","userloggedin", loggedIn);
+		ActivityQuery actQuery = new ActivityQuery();
+		
+		actQuery.setDisplayName(displayName);
+		
+		model.put("activityQuery", actQuery);
+		
+		return new ModelAndView("location", "activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value="/concerts")
@@ -223,15 +248,7 @@ public class HomeController {
 	}
 
 		
-	@RequestMapping(value="location")
-	public ModelAndView enterZipcode( Map<String,Object> model) {
-		
-		ActivityQuery actQuery = new ActivityQuery();
-		
-		model.put("activityQuery", actQuery);
-		
-		return new ModelAndView("location", "activityQuery", actQuery);
-	}
+
 	
 		
 		

@@ -12,6 +12,7 @@
 
 <script>
 
+window.localStorage.clear();
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCJNSDP8yBQ4KrGOeLyYYD5r5J9tNR6kUk",
@@ -78,7 +79,7 @@ firebase.auth().getRedirectResult().then(function(result) {
 		  var user = result.user;
 		  //potentially here you want to now redirect to your query start, passing the relevant user info on
 		  
-		  window.location = "../querystart";
+		  window.location = "../location";
 	  
 	    // ...
 	  }

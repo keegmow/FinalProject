@@ -16,6 +16,9 @@
 </head>
 <body>
 <h1>Please enter you zipcode</h1>
+Hello <c:out value="${activityQuery.getDisplayName()}"></c:out>! We need your location.
+<br>
+Please type in your zipcode.
 	<form:form method="get" action="zipcode" commandName="activityQuery">
 		Zipcode:
       		<form:input path="zipcode" size="5" placeholder="00000"/>
