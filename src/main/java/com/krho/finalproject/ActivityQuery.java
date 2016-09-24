@@ -1,5 +1,9 @@
 package com.krho.finalproject;
 
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class ActivityQuery {
 
 	private int queryId;
@@ -10,6 +14,28 @@ public class ActivityQuery {
 	private String answer5 = null;
 	
 	
+	@NotNull(message = "Please enter 5 digit zipcode")
+	@Size(min=5, max=5, message = "Please enter 5 digit zipcode")
+	private String zipcode = null;
+	
+	private String displayName = null;
+	
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
 	public int getQueryId() {
 		return queryId;
 	}
