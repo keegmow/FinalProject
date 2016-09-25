@@ -38,10 +38,10 @@ public class MovieController {
 		  return sb.toString();
 		}
 	
-	public static MovieList getMovieList() throws IOException {
+	public static MovieList getMovieList(String zip) throws IOException {
 		
 		// get JSON result from the API and provide some custom parameters 
-		String movieJason = "{\"movie\":" + MovieController.httpGet("http://data.tmsapi.com/v1.1/movies/showings?startDate="+ APISetDate.TODAY + "&zip="+ APISetDate.ZIPCODE +"&api_key=" + APIConfigurationSettings.KEY_ID) + "}";
+		String movieJason = "{\"movie\":" + MovieController.httpGet("http://data.tmsapi.com/v1.1/movies/showings?startDate="+ APISetDate.TODAY + "&zip="+ zip +"&api_key=" + APIConfigurationSettings.KEY_ID) + "}";
 		
 		ObjectMapper mapper=new ObjectMapper();
 		

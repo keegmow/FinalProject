@@ -141,8 +141,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/movieshowtimes")
-	public String movieshowtimes(Model model) throws IOException {
-		MovieList result = MovieController.getMovieList();
+	public String movieshowtimes(@ModelAttribute("activityQuery") ActivityQuery actQuery ,Model model) throws IOException {
+		MovieList result = MovieController.getMovieList(actQuery.getZipcode());
+		
 		List <Movie> movies = result.getMovie();
 		model.addAttribute("movies", movies);
 		return "movieshowtimes";
@@ -222,9 +223,9 @@ public class HomeController {
 	    }
 	
 	@RequestMapping(value = "activityChoice")
-	public ModelAndView activityChoice (@RequestParam(value="activityParam")String activity, Model model) throws IOException {
+	public ModelAndView activityChoice (@RequestParam(value="activityParam")String activity,@ModelAttribute("activityQuery") ActivityQuery actQuery, Model model) throws IOException {
 		if (activity.equalsIgnoreCase("Movie Theater")) {
-			MovieList result = MovieController.getMovieList();
+			MovieList result = MovieController.getMovieList(actQuery.getZipcode());
 			List <Movie> movies = result.getMovie();
 			model.addAttribute("movies", movies);
 			return new ModelAndView("movieshowtimes");
