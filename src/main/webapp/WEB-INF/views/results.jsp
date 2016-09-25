@@ -13,7 +13,7 @@
 <title>Results</title>
 </head>
 <body>
-
+<div align="center">
 	<form:form method="get" action="activityChoice" commandName="">
 		<c:forEach items="${finalQuery}" var="act" end="5">
     			<td><input type="submit" name="activityParam" value="${act.getActivityName()}" /></td><br>
@@ -26,6 +26,6 @@
 	</form:form>
 
 
-
+</div>
 </body>
 </html>

@@ -6,6 +6,7 @@
 	<title>Home</title>
 </head>
 <body>
+<div align="center">
 <h1>
 	Welcome to Bored!  
 </h1>
@@ -14,5 +15,6 @@
 
 
 </a>
+</div>
 </body>
 </html>

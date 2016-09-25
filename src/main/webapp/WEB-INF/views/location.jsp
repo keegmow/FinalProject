@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+<div align="center">
 <h1>Please enter you zipcode</h1>
 Hello <c:out value="${activityQuery.getDisplayName()}"></c:out>! We need your location.
 <br>
@@ -26,6 +27,6 @@ Please type in your zipcode.
       		<br>
       		<input type="submit" value="Enter"/>
 	</form:form>
-
+</div>
 </body>
 </html>
