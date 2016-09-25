@@ -11,7 +11,7 @@
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
 <script>
-
+/* firebase.unauth(); */
 window.localStorage.clear();
   // Initialize Firebase
   var config = {

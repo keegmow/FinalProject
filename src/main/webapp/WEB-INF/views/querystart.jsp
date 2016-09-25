@@ -14,7 +14,7 @@
 <title>${Question.prompt1}</title>
 </head>
 <body>
-<div align="left">
+<div align="center">
 	<h2><c:out value="${Question.prompt1}"></c:out></h2>
 	
 	<form:form method="get" action="answer1" commandName="activityQuery">
@@ -32,30 +32,6 @@
         </form:form>
 
     </div>
-<!-- <FORM NAME="form1" METHOD="POST">
-            <INPUT TYPE="HIDDEN" NAME="buttonName">
-            <INPUT TYPE="BUTTON" VALUE="Button 1" ONCLICK="button1()">
-            <INPUT TYPE="BUTTON" VALUE="Button 2" ONCLICK="button2()">
-        </FORM>
 
-        <SCRIPT LANGUAGE="JavaScript">
-            
-            function button1()
-            {
-                document.form1.buttonName.value = "button 1"
-                form1.submit()
-            }    
-            function button2()
-            {
-                document.form1.buttonName.value = "button 2"
-                form1.submit()
-            }    
-            function button3()
-            {
-                document.form1.buttonName.value = "button 3"
-                form1.submit()
-            }   
-            
-        </SCRIPT> -->
 </body>
 </html>

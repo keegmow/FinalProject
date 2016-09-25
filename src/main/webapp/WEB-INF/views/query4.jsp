@@ -14,7 +14,7 @@
 <title>${Question.prompt4}</title>
 </head>
 <body>
-<div align="left">
+<div align="center">
 	<h2><c:out value="${Question.prompt4}"></c:out></h2>
 	
 	<form:form method="get" action="answer4" commandName="activityQuery">
