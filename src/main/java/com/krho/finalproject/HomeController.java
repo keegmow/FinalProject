@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.evdb.javaapi.data.Event;
+import com.krho.googlemapapi.ZipCodeDetails;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -230,15 +231,15 @@ public class HomeController {
 			model.addAttribute("movies", movies);
 			return new ModelAndView("movieshowtimes");
 		} else if (activity.equalsIgnoreCase("Festival")) {
-			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
+			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Concert")) {
-			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
+			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
-			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
+			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} 
