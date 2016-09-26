@@ -16,7 +16,7 @@ public class WeatherAPITest {
 
 		URL url =null;
 		//String weatherInCity = ""; 
-		String zipCode = "92093"; 
+		String zipCode = "48310"; 
 		String apiKey = APIConfigurationSettings.WeatherAPIKey;
 		try {
 			url = new URL("http://api.openweathermap.org/data/2.5/weather?zip="+ zipCode +",us&appid=" + apiKey);
@@ -27,6 +27,7 @@ public class WeatherAPITest {
 			double tempInF = tempInKelven * 9/5 - 459.67;
 			BigDecimal temp = new BigDecimal(tempInF);
 			System.out.println("the tempreture is: " + temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "F"); // for test on console 
+			System.out.println("the image icon is" + inCity.getWeather().get(0).getIcon());
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
