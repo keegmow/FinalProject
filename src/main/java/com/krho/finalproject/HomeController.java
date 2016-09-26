@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.evdb.javaapi.data.Event;
+import com.krho.googlemapapi.ZipCodeDetails;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -58,7 +59,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Map <String, Object> model) {
-		String userloggedin = "false";
+		String userloggedin = "";
 		model.put("userloggedin", userloggedin);
 		return new ModelAndView("home", "userloggedin", userloggedin);
 	}
@@ -78,22 +79,31 @@ public class HomeController {
 //		return new ModelAndView("fireBase","userloggedin", loggedIn);
 //	}
 	@RequestMapping(value = "/fireBase")
-	public ModelAndView googleLogin(@ModelAttribute("userloggedin") String userLogged, @RequestParam(value="loggedIn", defaultValue="false", required=false) String loggedIn) {
-		if (!loggedIn.equals("false")) {
-			userLogged = loggedIn;
-		}
+	public ModelAndView googleLogin(@ModelAttribute("userloggedin") String userLogged, 
+									@RequestParam(value="loggedIn", defaultValue="", required=false) String loggedIn) {
+		
 		System.out.println("loggedIn: " + loggedIn);
-		System.out.println("userLogged: " + userLogged);
-		if (userLogged.equals("false")) {
-			return new ModelAndView("fireBase");			
-		} else {
-			return new ModelAndView("location", "userloggedin", userLogged);
+		
+		if (loggedIn.isEmpty() || loggedIn.equals(null)) {
+			return new ModelAndView("fireBase");	
 		}
+		
+		System.out.println("userLogged: " + userLogged);
+		if (userLogged.equals(null) || userLogged.isEmpty()) {
+			userLogged = loggedIn;	
+		}
+		return new ModelAndView("location", "userloggedin", userLogged);
 		
 	}
 	
 	@RequestMapping(value="location")
-	public ModelAndView enterZipcode( Map<String,Object> model, @ModelAttribute("userloggedin") String displayName) {
+	public ModelAndView enterZipcode( Map<String,Object> model, @ModelAttribute("userloggedin") String displayName,
+									@RequestParam(value="loggedIn", defaultValue="", required=false) String loggedIn) {
+		
+		System.out.println("userLogged: " + displayName);
+		if (displayName.equals(null) || displayName.isEmpty()) {
+			displayName = loggedIn;	
+		}
 		
 		ActivityQuery actQuery = new ActivityQuery();
 		
@@ -141,8 +151,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/movieshowtimes")
-	public String movieshowtimes(Model model) throws IOException {
-		MovieList result = MovieController.getMovieList();
+	public String movieshowtimes(@ModelAttribute("activityQuery") ActivityQuery actQuery ,Model model) throws IOException {
+		MovieList result = MovieController.getMovieList(actQuery.getZipcode());
+		
 		List <Movie> movies = result.getMovie();
 		model.addAttribute("movies", movies);
 		return "movieshowtimes";
@@ -214,30 +225,31 @@ public class HomeController {
 		return new ModelAndView("results","finalQuery", activities);
 	}
 	
-	 @RequestMapping(value = "/redirect", method = RequestMethod.GET)
-	    public ModelAndView method() {
-		 String projectUrl = "https://www.google.com/#q=" ;
-	            return new ModelAndView("redirect:" + projectUrl);
+	@RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    public ModelAndView method() {
+	 String projectUrl = "https://www.google.com/#q=" ;
+            return new ModelAndView("redirect:" + projectUrl);
 
-	    }
+    }
 	
 	@RequestMapping(value = "activityChoice")
-	public ModelAndView activityChoice (@RequestParam(value="activityParam")String activity, Model model) throws IOException {
+	public ModelAndView activityChoice (@RequestParam(value="activityParam")String activity,
+										@ModelAttribute("activityQuery") ActivityQuery actQuery, Model model) throws IOException {
 		if (activity.equalsIgnoreCase("Movie Theater")) {
-			MovieList result = MovieController.getMovieList();
+			MovieList result = MovieController.getMovieList(actQuery.getZipcode());
 			List <Movie> movies = result.getMovie();
 			model.addAttribute("movies", movies);
 			return new ModelAndView("movieshowtimes");
 		} else if (activity.equalsIgnoreCase("Festival")) {
-			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
+			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Concert")) {
-			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
+			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
-			List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
+			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} 
