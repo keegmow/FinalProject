@@ -204,10 +204,12 @@ public class Activity {
 		String column8 = "Exercise";
 		String column9 = "Paid";
 		
-		String query = "WHERE " + column1 + " = " + stayHome +
-						" and " + column2 + " = " + inside;
+		String query = "WHERE " + column1 + " = " + stayHome;
+	
 		
-		
+		if(inside == true) {
+			query = query + " and " + column2 + " = " + inside;
+		}
 		
 		
 		if (family == true) {

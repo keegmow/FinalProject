@@ -82,13 +82,13 @@ public class HomeController {
 	public ModelAndView googleLogin(@ModelAttribute("userloggedin") String userLogged, 
 									@RequestParam(value="loggedIn", defaultValue="", required=false) String loggedIn) {
 		
-		System.out.println("loggedIn: " + loggedIn);
+		System.out.println("1loggedIn: " + loggedIn);
 		
 		if (loggedIn.isEmpty() || loggedIn.equals(null)) {
 			return new ModelAndView("fireBase");	
 		}
 		
-		System.out.println("userLogged: " + userLogged);
+		System.out.println("1userLogged: " + userLogged);
 		if (userLogged.equals(null) || userLogged.isEmpty()) {
 			userLogged = loggedIn;	
 		}
@@ -100,7 +100,8 @@ public class HomeController {
 	public ModelAndView enterZipcode( Map<String,Object> model, @ModelAttribute("userloggedin") String displayName,
 									@RequestParam(value="loggedIn", required=false) String loggedIn) {
 		
-		System.out.println("userLogged: " + displayName);
+		System.out.println("2loggedIn: " + loggedIn);
+		System.out.println("2userLogged: " + displayName);
 		if (displayName.equals("") || displayName.isEmpty()) {
 			displayName = loggedIn;	
 		}
@@ -217,7 +218,7 @@ public class HomeController {
 
 		
 		Activity activity = new Activity();
-//		System.out.println(activity.buildQuery(actQuery));
+		System.out.println(activity.buildQuery(actQuery));
 		List <Activity> activities = DAO.getActivities(activity.buildQuery(actQuery));
 		
 		Collections.shuffle(activities);
