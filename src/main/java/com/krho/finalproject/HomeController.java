@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.evdb.javaapi.data.Event;
 import com.krho.googlemapapi.ZipCodeDetails;
+import com.krho.weatherapi.WeatherInfo;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -159,7 +160,9 @@ public class HomeController {
         	System.out.println(result);
             return new ModelAndView("location");
         }
-		
+		WeatherInfo weather = new WeatherInfo(actQuery.getZipcode());
+        actQuery.setWeather(weather);
+        
 		return new ModelAndView("querystart","activityQuery", actQuery);
 	}
 	

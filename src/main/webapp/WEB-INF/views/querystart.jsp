@@ -12,9 +12,9 @@
 <jsp:useBean id="Question" class="com.krho.finalproject.Question">
 </jsp:useBean>
 <jsp:setProperty property="*" name="Question" />
-<jsp:useBean id="weather" class="com.krho.weatherapi.WeatherInfo">
+<%-- <jsp:useBean id="weather" class="com.krho.weatherapi.WeatherInfo">
 </jsp:useBean>
-<jsp:setProperty property="*" name="weather" />
+<jsp:setProperty property="*" name="weather" /> --%>
 <title>${Question.prompt1}</title>
 </head>
 <body>
@@ -34,18 +34,21 @@
 		  <input type="submit" name="answer1" value="${Question.supriseMe}" />
 		<!-- <input type="submit" value="Submit"/> -->
         </form:form>
+        
+        </div>
 	<div align="center">
 
 		<table>
 			<tbody>
 				<tr>
-					<td><img src="http://openweathermap.org/img/w/${weather.getIcon()}.png">
+					<td><img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
 					</td>
-					<td><p>
-							Sterling Heights MI moderate rain
-					</p>
-							<h3>16.7°С</h3> temperature from 15
-							to 18.3°С, wind 5.46m/s. clouds 92%
+					<td><p>${activityQuery.getWeather().getCityName()} : ${activityQuery.getWeather().getWeatherDescription()}</p>
+							<h3>${activityQuery.getWeather().getWeatherInF()}</h3><br>
+							Low: ${activityQuery.getWeather().getLowTemp()}  High: ${activityQuery.getWeather().getHighTemp()}<br>
+							Wind Speed: ${activityQuery.getWeather().getWindSpeed()} <br>
+							
+							
 					</td>
 				</tr>
 			</tbody>

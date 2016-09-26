@@ -12,12 +12,13 @@ import com.krho.secret.APIConfigurationSettings;
 
 public class WeatherInfo {
 	
-	private String zipCode; 
 	private WeatherDetails inCity;
 	
 	
 	
-	public WeatherInfo() {	}
+	public WeatherInfo(String zipcode) {
+		setup(zipcode);
+	}
 
 	private WeatherDetails setup(String zipCode){
 		inCity=null; 
@@ -65,7 +66,7 @@ public class WeatherInfo {
 		double tempInF = tempInKelven * 9/5 - 459.67;
 		BigDecimal temp = new BigDecimal(tempInF);
 		
-		return temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "°F";
+		return temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "&#8457";
 	}
 	
 	public String getHighTemp(){
@@ -74,7 +75,7 @@ public class WeatherInfo {
 		double tempInF = tempInKelven * 9/5 - 459.67;
 		BigDecimal temp = new BigDecimal(tempInF);
 		
-		return temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "°F";
+		return temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "&#8457";
 	}
 	
 public String getLowTemp(){
@@ -83,7 +84,7 @@ public String getLowTemp(){
 		double tempInF = tempInKelven * 9/5 - 459.67;
 		BigDecimal temp = new BigDecimal(tempInF);
 		
-		return temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "°F";
+		return temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "&#8457";
 	}
 
 public double getWindSpeed(){

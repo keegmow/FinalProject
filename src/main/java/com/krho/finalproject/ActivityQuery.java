@@ -19,7 +19,7 @@ public class ActivityQuery {
 	@Size(min=5, max=5, message = "Please enter 5 digit zipcode")
 	private String zipcode = null;
 	
-	public WeatherInfo weather;
+	private WeatherInfo weather;
 	
 	
 	private String displayName = null;
@@ -30,6 +30,16 @@ public class ActivityQuery {
 
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
+	}
+	
+	
+
+	public WeatherInfo getWeather() {
+		return weather;
+	}
+
+	public void setWeather(WeatherInfo weather) {
+		this.weather = weather;
 	}
 
 	public String getZipcode() {
