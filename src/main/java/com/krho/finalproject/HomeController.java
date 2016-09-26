@@ -98,7 +98,7 @@ public class HomeController {
 	
 	@RequestMapping(value="location")
 	public ModelAndView enterZipcode( Map<String,Object> model, @ModelAttribute("userloggedin") String displayName,
-									@RequestParam(value="loggedIn", defaultValue="", required=false) String loggedIn) {
+									@RequestParam(value="loggedIn", required=false) String loggedIn) {
 		
 		System.out.println("userLogged: " + displayName);
 		if (displayName.equals("") || displayName.isEmpty()) {
