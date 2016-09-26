@@ -36,7 +36,7 @@ public class Eventful {
 		esr.setLocation(loc);
 		esr.setDateRange(dates);
 		esr.setPageSize(pageSize);
-		esr.setPageNumber(pageNumber);
+//		esr.setPageNumber(pageNumber);
 		esr.setKeywords(keywords);
 //		esr.setCategory(category);
 		// These 2 lines will set the timeout to 60 seconds.Normally not needed
