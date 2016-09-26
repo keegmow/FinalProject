@@ -3,6 +3,7 @@ package com.krho.finalproject;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import com.krho.weatherapi.WeatherInfo;
 
 public class ActivityQuery {
 
@@ -17,6 +18,9 @@ public class ActivityQuery {
 	@NotNull(message = "Please enter 5 digit zipcode")
 	@Size(min=5, max=5, message = "Please enter 5 digit zipcode")
 	private String zipcode = null;
+	
+	public WeatherInfo weather;
+	
 	
 	private String displayName = null;
 	

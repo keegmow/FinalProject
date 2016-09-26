@@ -90,7 +90,7 @@ this.barg = barg;
 
 @Override 
 public String toString(){
-	return "Date Time: " + dateTime + "\n" + this.theatre.toString();
+	return "Date Time: " + dateTime + " " + this.theatre.toString();
 }
 
 public Map<String, Object> getAdditionalProperties() {

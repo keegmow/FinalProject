@@ -15,7 +15,7 @@
 </head>
 <body>
 <div align="center">
-	<h2><c:out value="${Question.prompt1}"></c:out></h2>
+	<h2><c:out value="${Question.getPrompt1()}"></c:out></h2>
 	
 	<form:form method="get" action="answer1" commandName="activityQuery">
 	     

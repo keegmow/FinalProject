@@ -169,15 +169,15 @@ public class Activity {
 	
 	public String buildQuery(ActivityQuery finalQuery) {
 		
-		stayHome = false;
-		inside = false;
-		family = false;
-		friends = false;
-		myself = false;
-		potato = false;
-		interactive = false;
-		exercise = false;
-		paid = false;
+//		stayHome = false;
+//		inside = false;
+//		family = false;
+//		friends = false;
+//		myself = false;
+//		potato = false;
+//		interactive = false;
+//		exercise = false;
+//		paid = false;
 		
 		setAnswer1Query(finalQuery.getAnswer1());
 		

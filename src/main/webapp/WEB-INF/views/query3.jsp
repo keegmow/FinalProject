@@ -27,7 +27,7 @@
 	      <input type="submit" name="answer3" value="${Question.choice3b}" />
 	      <br>
 	      <%-- <form:radiobutton path="answer3" value="${Question.choice3c}" label="${Question.choice3c}" /> --%>
-	      <input type="submit" name="answer1" value="${Question.choice3c}" />
+	      <input type="submit" name="answer3" value="${Question.choice3c}" />
 	      <br>
 		<!-- <input type="submit" value="Submit"/> -->
         </form:form>

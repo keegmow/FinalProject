@@ -36,24 +36,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes({"activityQuery", "userloggedin"})
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate);
-//		
-//		return "home";
-//	}
 	
 	Question quest = new Question();
 	
@@ -102,7 +84,8 @@ public class HomeController {
 		
 		System.out.println("2loggedIn: " + loggedIn);
 		System.out.println("2userLogged: " + displayName);
-		if (displayName.equals("") || displayName.isEmpty()) {
+		
+		if ((displayName.equals("") || displayName.isEmpty()) && loggedIn.equals(null)) {
 			displayName = loggedIn;	
 		}
 		
@@ -184,6 +167,8 @@ public class HomeController {
 	public ModelAndView query2 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
 		
+//		Activity activity = new Activity();
+//		System.out.println("answer 1: " + activity.buildQuery(actQuery));
 		if (actQuery.getAnswer1().equals(quest.supriseMe)) {
 			ModelAndView suprise = finalResults(actQuery, model);
 			return suprise;
@@ -197,18 +182,27 @@ public class HomeController {
 	@RequestMapping(value = "/answer2", method = RequestMethod.GET)
 	public ModelAndView query3 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
+//		Activity activity = new Activity();
+//		System.out.println("answer 2: " + activity.buildQuery(actQuery));
+		
 		return new ModelAndView("query3","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer3", method = RequestMethod.GET)
 	public ModelAndView query4 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
+//		Activity activity = new Activity();
+//		System.out.println("answer 3: " + activity.buildQuery(actQuery));
+		
 		return new ModelAndView("query4","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer4", method = RequestMethod.GET)
 	public ModelAndView query5 (@ModelAttribute("activityQuery") ActivityQuery actQuery,
 									Map<String, Object> model) {
+//		Activity activity = new Activity();
+//		System.out.println("answer 4: " + activity.buildQuery(actQuery));
+		
 		return new ModelAndView("query5","activityQuery", actQuery);
 	}
 	
@@ -218,7 +212,8 @@ public class HomeController {
 
 		
 		Activity activity = new Activity();
-		System.out.println(activity.buildQuery(actQuery));
+//		System.out.println("answer 5: " + activity.buildQuery(actQuery));
+		
 		List <Activity> activities = DAO.getActivities(activity.buildQuery(actQuery));
 		
 		Collections.shuffle(activities);
@@ -239,13 +234,14 @@ public class HomeController {
 		if (activity.equalsIgnoreCase("Movie Theater")) {
 			MovieList result = MovieController.getMovieList(actQuery.getZipcode());
 			List <Movie> movies = result.getMovie();
+			
 			model.addAttribute("movies", movies);
 			return new ModelAndView("movieshowtimes");
 		} else if (activity.equalsIgnoreCase("Festival")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
 			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
-			return new ModelAndView("eventfulResults");
+			return new ModelAndView("eventfulResults");	
 		} else if (activity.equalsIgnoreCase("Concert")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
 			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
@@ -256,9 +252,13 @@ public class HomeController {
 			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
-		} 
-		else { 
-			String projectUrl = "https://www.google.com/#q=" + activity ;
+		} else if (activity.equalsIgnoreCase("Read a random Wikipedia page")) {
+			String projectUrl = "https://en.wikipedia.org/wiki/Special:Random";
+            return new ModelAndView("redirect:" + projectUrl);
+		} else { 
+			String projectUrl = "https://www.google.com/#q=" + activity;
+//			String projectUrl = "https://www.google.com/#q=" + activity + " " + actQuery.getZipcode();
+
             return new ModelAndView("redirect:" + projectUrl);
 		}
 	}
