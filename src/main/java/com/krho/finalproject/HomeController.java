@@ -98,10 +98,10 @@ public class HomeController {
 	
 	@RequestMapping(value="location")
 	public ModelAndView enterZipcode( Map<String,Object> model, @ModelAttribute("userloggedin") String displayName,
-									@RequestParam(value="loggedIn", defaultValue="", required=false) String loggedIn) {
+									@RequestParam(value="loggedIn", required=false) String loggedIn) {
 		
 		System.out.println("userLogged: " + displayName);
-		if (displayName.equals(null) || displayName.isEmpty()) {
+		if (displayName.equals("") || displayName.isEmpty()) {
 			displayName = loggedIn;	
 		}
 		
@@ -242,14 +242,17 @@ public class HomeController {
 			return new ModelAndView("movieshowtimes");
 		} else if (activity.equalsIgnoreCase("Festival")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
+			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Concert")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
+			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
+			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults");
 		} 
