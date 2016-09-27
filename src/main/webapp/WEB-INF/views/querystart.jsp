@@ -39,16 +39,16 @@
 
 	</div>
 	<div align="center">
-
-		<h2>${activityQuery.getWeather().getCityName()}: ${activityQuery.getWeather().getWeatherDescription()}</h2>
-		<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-		<h3>
-		${activityQuery.getWeather().getWeatherInF()}
-		</h3>
-		Low: ${activityQuery.getWeather().getLowTemp()} High:
-		${activityQuery.getWeather().getHighTemp()}<br /> Wind Speed:
-		${activityQuery.getWeather().getWindSpeed()} <br />
-
+		<c:catch>
+			<h2>${activityQuery.getWeather().getCityName()}:	${activityQuery.getWeather().getWeatherDescription()}</h2>
+			<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
+			<h3>
+			${activityQuery.getWeather().getWeatherInF()}
+			</h3>
+			Low: ${activityQuery.getWeather().getLowTemp()} High:
+			${activityQuery.getWeather().getHighTemp()}<br /> Wind Speed:
+			${activityQuery.getWeather().getWindSpeed()} <br />
+		</c:catch>
 	</div>
 
 </body>

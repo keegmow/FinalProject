@@ -10,7 +10,7 @@
 <h1>
 	Welcome to Bored!  
 </h1>
-<a href="fireBase/">
+<a href="location">
 <button type="button">Log In!</button>
 
 
