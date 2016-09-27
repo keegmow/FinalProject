@@ -14,17 +14,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Movies Showtimes</h1>
-<br />
-<c:forEach var="i" items="${movies }">
-<br />
-<h2><c:out value="${i.getTitle()} "/></h2>
-<h3>Release Date: </h3> <c:out value="${i.getReleaseDate() }"/><p>
-<h3>Description: </h3> <c:out value="${i.getLongDescription() }"/><p>
-<h3>Genres: </h3> <c:out value="${i.getGenres() }"/><p>
-<h3>TopCast: </h3> <c:out value="${i.getTopCast() }"/><p>
-<h3>OfficialUrl: </h3> <a href="<c:out value="${i.getOfficialUrl() }"/>">click here</a>
-<h3>Showtimes: </h3> <c:out value="${i.getShowtimes() }"/><p>
-</c:forEach>
+	<h1>Movies Showtimes</h1>
+	<br />
+	<c:forEach var="i" items="${movies }">
+	<br />
+		<h2><c:out value="${i.getTitle()} "/></h2>
+		<h3>Release Date: </h3> 
+			<c:out value="${i.getReleaseDate() }"/>
+		<h3>Description: </h3> 
+			<c:out value="${i.getLongDescription() }"/>
+		<h3>Genres: </h3> 
+		<c:forEach var="j" items="${i.getGenres() }">
+			<c:out value="${j }"/>
+			</c:forEach>
+		<h3>TopCast: </h3> 
+			<c:forEach var="j" items="${i.getTopCast() }">
+			<c:out value="${j }"/>
+			</c:forEach>
+		<h3>OfficialUrl: </h3> <a href="<c:out value="${i.getOfficialUrl() }"/>">click here</a>
+		<h3>Showtimes: </h3> 
+			<c:forEach var="j" items="${i.getShowtimes() }">
+			<c:out value="${j }"/><br />
+			</c:forEach> 
+	</c:forEach>
+
 </body>
 </html>
