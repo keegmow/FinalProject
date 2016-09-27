@@ -18,41 +18,36 @@
 <title>${Question.prompt1}</title>
 </head>
 <body>
-<div align="center">
-	<h2><c:out value="${Question.getPrompt1()}"></c:out></h2>
-	
-	<form:form method="get" action="answer1" commandName="activityQuery">
-	     
-	    <br>
-	      <%-- <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
-	      <input type="submit" name="answer1" value="${Question.choice1a}" />
-	    <br>
-	      <%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
-	      <input type="submit" name="answer1" value="${Question.choice1b}" />
-		<br>
-		<br>
-		  <input type="submit" name="answer1" value="${Question.supriseMe}" />
-		<!-- <input type="submit" value="Submit"/> -->
-        </form:form>
-        
-        </div>
+	<div align="center">
+		<h2>
+			<c:out value="${Question.getPrompt1()}"></c:out>
+		</h2>
+
+		<form:form method="get" action="answer1" commandName="activityQuery">
+
+			<br>
+			<%-- <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
+			<input type="submit" name="answer1" value="${Question.choice1a}" />
+			<br>
+			<%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
+			<input type="submit" name="answer1" value="${Question.choice1b}" />
+			<br>
+			<br>
+			<input type="submit" name="answer1" value="${Question.supriseMe}" />
+			<!-- <input type="submit" value="Submit"/> -->
+		</form:form>
+
+	</div>
 	<div align="center">
 
-		<table>
-			<tbody>
-				<tr>
-					<td><img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-					</td>
-					<td><p>${activityQuery.getWeather().getCityName()} : ${activityQuery.getWeather().getWeatherDescription()}</p>
-							<h3>${activityQuery.getWeather().getWeatherInF()}</h3><br>
-							Low: ${activityQuery.getWeather().getLowTemp()}  High: ${activityQuery.getWeather().getHighTemp()}<br>
-							Wind Speed: ${activityQuery.getWeather().getWindSpeed()} <br>
-							
-							
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<h2>${activityQuery.getWeather().getCityName()}: ${activityQuery.getWeather().getWeatherDescription()}</h2>
+		<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
+		<h3>
+		${activityQuery.getWeather().getWeatherInF()}
+		</h3>
+		Low: ${activityQuery.getWeather().getLowTemp()} High:
+		${activityQuery.getWeather().getHighTemp()}<br /> Wind Speed:
+		${activityQuery.getWeather().getWindSpeed()} <br />
 
 	</div>
 
