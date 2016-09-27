@@ -25,7 +25,15 @@
 		
 	</form:form>
 
-
 </div>
+<div align="center">
+<a href="location">
+<button type="button">Change zipcode</button>
+<a/>
+<a href="zipcode">
+<button type="button">New Search</button>
+</a>
+</div>
+
 </body>
 </html>
