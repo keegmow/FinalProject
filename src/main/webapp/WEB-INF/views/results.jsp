@@ -27,10 +27,10 @@
 
 </div>
 <div align="center">
-<a href="location/">
+<a href="location">
 <button type="button">Change zipcode</button>
 <a/>
-<a href="querystart/">
+<a href="zipcode">
 <button type="button">New Search</button>
 </a>
 </div>

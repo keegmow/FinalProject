@@ -18,7 +18,7 @@ Then you have come to the right place! <br>
 Our algorithm will give you suggestions of things to do based on your answers to our 4 to 5 questions.
  
 </p><br>
-<a href="location/">
+<a href="location">
 <button type="button">Let's get started!</button>
 </a>
 </div>
