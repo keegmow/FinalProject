@@ -9,6 +9,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel='stylesheet' href='webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
 <jsp:useBean id="Question" class="com.krho.finalproject.Question">
 </jsp:useBean>
 <jsp:setProperty property="*" name="Question" />
@@ -17,6 +19,8 @@
 <jsp:setProperty property="*" name="weather" /> --%>
 <title>${Question.prompt1}</title>
 </head>
+<script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <body>
 	<div align="center">
 		<h2>
@@ -27,29 +31,32 @@
 
 			<br>
 			<%-- <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1a}" />
+			<input type="submit" class="btn btn-info" name="answer1" value="${Question.choice1a}" />
 			<br>
 			<%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1b}" />
+			<input type="submit" class="btn btn-info" name="answer1" value="${Question.choice1b}" />
 			<br>
 			<br>
-			<input type="submit" name="answer1" value="${Question.supriseMe}" />
+			<input type="submit" class="btn btn-info" name="answer1" value="${Question.supriseMe}" />
 			<!-- <input type="submit" value="Submit"/> -->
 		</form:form>
 
-	</div>
-	<div align="center">
 		<c:catch>
-			<h2>${activityQuery.getWeather().getCityName()}:	${activityQuery.getWeather().getWeatherDescription()}</h2>
-			<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-			<h3>
-			${activityQuery.getWeather().getWeatherInF()}
-			</h3>
-			Low: ${activityQuery.getWeather().getLowTemp()} High:
-			${activityQuery.getWeather().getHighTemp()}<br /> Wind Speed:
-			${activityQuery.getWeather().getWindSpeed()} <br />
+		<div class="panel panel-default">
+			<div class="panel-header">	Weather : ${activityQuery.getWeather().getCityName()}</div>
+  				<div class="panel-body">
+					${activityQuery.getWeather().getWeatherDescription()}
+					<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
+					
+					${activityQuery.getWeather().getWeatherInF()}
+					
+					Low: ${activityQuery.getWeather().getLowTemp()} High:
+					${activityQuery.getWeather().getHighTemp()}<br /> Wind Speed:
+					${activityQuery.getWeather().getWindSpeed()} <br />
+				</div>
+			</div>
 		</c:catch>
-	</div>
 
+	</div>
 </body>
 </html>
