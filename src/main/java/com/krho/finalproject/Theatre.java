@@ -49,7 +49,8 @@ this.name = name;
 
 @Override
 public String toString(){
-	return "ID: "+ id +" Theater Name: " + name + "\n";
+	String str = " Theater Name: " + name;
+	return str;
 }
 
 public Map<String, Object> getAdditionalProperties() {

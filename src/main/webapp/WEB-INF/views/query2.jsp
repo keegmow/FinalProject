@@ -28,6 +28,14 @@
 		<br>
 		<!-- <input type="submit" value="Submit"/> -->
         </form:form>
+        
+      <a href="location">
+		<button type="button">Change Zipcode</button>
+		</a>
+		
+		<a href="zipcode">
+		<button type="button">New Search</button>
+		</a>
 
     </div>
 </body>
