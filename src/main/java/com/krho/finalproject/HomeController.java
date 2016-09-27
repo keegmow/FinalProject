@@ -81,19 +81,19 @@ public class HomeController {
 	
 	@RequestMapping(value="location")
 	public ModelAndView enterZipcode( Map<String,Object> model, @ModelAttribute("userloggedin") String displayName,
-									@RequestParam(value="loggedIn", required=false) String loggedIn) {
+									@RequestParam(value="loggedIn", defaultValue="" ,required=false) String loggedIn) {
 		
-		System.out.println("2loggedIn: " + loggedIn);
-		System.out.println("2userLogged: " + displayName);
-		
-		if ((displayName.equals("") || displayName.isEmpty()) && loggedIn.equals(null)) {
-			displayName = loggedIn;	
-		}
-		
+//		System.out.println("2loggedIn: " + loggedIn);
+//		System.out.println("2userLogged: " + displayName);
+//		
+//		if ((displayName.isEmpty()) && !(loggedIn.isEmpty())) {
+//			displayName = loggedIn;	
+//		}
+//		
 		ActivityQuery actQuery = new ActivityQuery();
 		
-		actQuery.setDisplayName(displayName);
-		
+//		actQuery.setDisplayName(displayName);
+//		
 		model.put("activityQuery", actQuery);
 		
 		return new ModelAndView("location", "activityQuery", actQuery);

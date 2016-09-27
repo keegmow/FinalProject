@@ -8,6 +8,7 @@
 <body>
 <div align="center">
 <h1>
+
 	  Embark  
 </h1><br>
 
@@ -19,8 +20,6 @@ Our algorithm will give you suggestions of things to do based on your answers to
 </p><br>
 <a href="location/">
 <button type="button">Let's get started!</button>
-
-
 </a>
 </div>
 </body>

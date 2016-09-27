@@ -34,6 +34,7 @@ public class Eventful {
 		if (api == null)
 			setup();
 		esr.setLocation(loc);
+		esr.setLocationRadius(20);
 		esr.setDateRange(dates);
 		esr.setPageSize(pageSize);
 //		esr.setPageNumber(pageNumber);
