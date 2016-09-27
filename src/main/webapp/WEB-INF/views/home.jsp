@@ -8,10 +8,17 @@
 <body>
 <div align="center">
 <h1>
-	Welcome to Bored!  
-</h1>
-<a href="fireBase/">
-<button type="button">Log In!</button>
+	  Embark  
+</h1><br>
+
+<p>
+Have some free time? Don't know what to do? <br>
+Then you have come to the right place! <br>
+Our algorithm will give you suggestions of things to do based on your answers to our 4 to 5 questions.
+ 
+</p><br>
+<a href="location/">
+<button type="button">Let's get started!</button>
 
 
 </a>
