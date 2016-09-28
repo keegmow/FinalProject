@@ -17,14 +17,14 @@
 <%-- <jsp:useBean id="weather" class="com.krho.weatherapi.WeatherInfo">
 </jsp:useBean>
 <jsp:setProperty property="*" name="weather" /> --%>
-<title>${Question.prompt1}</title>
+<title><c:out value="${Question.prompt1()}"></c:out></title>
 </head>
 <script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <body>
 	<div align="center">
 		<h2>
-			<c:out value="${Question.getPrompt1()}"></c:out>
+			<c:out value="${Question.prompt1()}"></c:out>
 		</h2>
 
 		<form:form method="get" action="answer1" commandName="activityQuery">

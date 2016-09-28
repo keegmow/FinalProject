@@ -163,7 +163,7 @@ public class HomeController {
 		WeatherInfo weather = new WeatherInfo(actQuery.getZipcode());
         actQuery.setWeather(weather);
         
-		return new ModelAndView("querystart","activityQuery", actQuery);
+		return new ModelAndView("NewQuery1","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer1", method = RequestMethod.GET)
@@ -231,6 +231,7 @@ public class HomeController {
 
     }
 	
+	
 	@RequestMapping(value = "activityChoice")
 	public ModelAndView activityChoice (@RequestParam(value="activityParam")String activity,
 										@ModelAttribute("activityQuery") ActivityQuery actQuery, Model model) throws IOException {
@@ -264,8 +265,14 @@ public class HomeController {
 
             return new ModelAndView("redirect:" + projectUrl);
 		}
+		
+		
 	}
 
+	@RequestMapping(value = "newQuery")
+	public String newQuery () {
+		return "NewQuery1";
+	}
 		
 
 	
