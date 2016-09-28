@@ -27,7 +27,7 @@
     <jsp:useBean id="Question" class="com.krho.finalproject.Question"></jsp:useBean>
 	<jsp:setProperty property="*" name="Question" />
 	
-    <title>${Question.getPrompt1()}</title>
+    <title>Embark: Home</title>
   </head>
 
   <body>
@@ -49,40 +49,24 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading"><c:out value="${Question.getPrompt1()}"></c:out></h1>
-            
-            <form:form method="get" action="answer1" commandName="activityQuery">
+            <h1 class="cover-heading">Embark</h1>
+         		   <br>
+					<h3>
+						Have some free time? <br>
+						Don't know what to do? <br>
+					</h3>
+					<br>
+					<h5>
+						Our algorithm will give you suggestions of things to do based on your answers to our 4 to 5 questions.
 
-			<br>
-			<br>
-			<%-- <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1a}" class="btn btn-lg btn-secondary"/>
-			<br>
-			<br>
-			<%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1b}" class="btn btn-lg btn-secondary"/>
-			<br>
-			<br>
-			<br>
-			<input type="submit" name="answer1" value="${Question.supriseMe}" class="btn btn-lg btn-secondary"/>
-			<br><br>
-			<!-- <input type="submit" value="Submit"/> -->
-		</form:form>
-          
-          </div>
+					</h5>
+					<br> 
+					<a href="location">
+						<button type="button" class="btn btn-lg btn-secondary">Let's get started!</button>
+					</a>
+				</div>
 
-          <div class="mastfoot">
-            <div class="inner">
-            <p>${activityQuery.getWeather().getCityName()}  ${activityQuery.getWeather().getWeatherInF()}</p>
-              <p>${activityQuery.getWeather().getWeatherDescription()}
-					<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-				
-					Low: ${activityQuery.getWeather().getLowTemp()} 
-					High: ${activityQuery.getWeather().getHighTemp()}<br>
-					Wind: ${activityQuery.getWeather().getWindSpeed()}<br>
-				</p>
-            </div>
-          </div>
+
 
         </div>
 

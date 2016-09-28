@@ -44,7 +44,7 @@ public class HomeController {
 	public ModelAndView home(Map <String, Object> model) {
 		String userloggedin = "";
 		model.put("userloggedin", userloggedin);
-		return new ModelAndView("home", "userloggedin", userloggedin);
+		return new ModelAndView("NewHome", "userloggedin", userloggedin);
 	}
 	
 //	@RequestMapping(value = "/fireBase", method = RequestMethod.GET)
@@ -96,7 +96,7 @@ public class HomeController {
 //		
 		model.put("activityQuery", actQuery);
 		
-		return new ModelAndView("location", "activityQuery", actQuery);
+		return new ModelAndView("NewZipcode", "activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value="/concerts")
@@ -158,7 +158,7 @@ public class HomeController {
 									Map<String, Object> model) {
         if (result.hasErrors()) {
         	System.out.println(result);
-            return new ModelAndView("location");
+            return new ModelAndView("NewZipcode");
         }
 		WeatherInfo weather = new WeatherInfo(actQuery.getZipcode());
         actQuery.setWeather(weather);
@@ -176,9 +176,9 @@ public class HomeController {
 			ModelAndView suprise = finalResults(actQuery, model);
 			return suprise;
 		} else if (actQuery.getAnswer1().equals(quest.choice1a)) {
-			return new ModelAndView("query3","activityQuery", actQuery);
+			return new ModelAndView("NewQuery3","activityQuery", actQuery);
 		} else {
-			return new ModelAndView("query2","activityQuery", actQuery);
+			return new ModelAndView("NewQuery2","activityQuery", actQuery);
 		}
 	}
 	
@@ -188,7 +188,7 @@ public class HomeController {
 //		Activity activity = new Activity();
 //		System.out.println("answer 2: " + activity.buildQuery(actQuery));
 		
-		return new ModelAndView("query3","activityQuery", actQuery);
+		return new ModelAndView("NewQuery3","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer3", method = RequestMethod.GET)
@@ -197,7 +197,7 @@ public class HomeController {
 //		Activity activity = new Activity();
 //		System.out.println("answer 3: " + activity.buildQuery(actQuery));
 		
-		return new ModelAndView("query4","activityQuery", actQuery);
+		return new ModelAndView("NewQuery4","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer4", method = RequestMethod.GET)
@@ -206,7 +206,7 @@ public class HomeController {
 //		Activity activity = new Activity();
 //		System.out.println("answer 4: " + activity.buildQuery(actQuery));
 		
-		return new ModelAndView("query5","activityQuery", actQuery);
+		return new ModelAndView("NewQuery5","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer5", method = RequestMethod.GET)

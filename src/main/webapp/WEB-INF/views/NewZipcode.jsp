@@ -27,70 +27,60 @@
     <jsp:useBean id="Question" class="com.krho.finalproject.Question"></jsp:useBean>
 	<jsp:setProperty property="*" name="Question" />
 	
-    <title>${Question.getPrompt1()}</title>
+    <title>Embark: Location</title>
   </head>
 
   <body>
 
-    <div class="site-wrapper">
+	<div class="site-wrapper">
 
-      <div class="site-wrapper-inner">
+		<div class="site-wrapper-inner">
 
-        <div class="cover-container">
+			<div class="cover-container">
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Embark</h3>
-              <nav class="nav nav-masthead">
-                <a class="nav-link" href="">Home</a>
-                <a class="nav-link" href="location">New Location</a>
-              </nav>
-            </div>
-          </div>
+				<div class="masthead clearfix">
+					<div class="inner">
+						<h3 class="masthead-brand">Embark</h3>
+						<nav class="nav nav-masthead"> <a class="nav-link" href="">Home</a>
+						<a class="nav-link" href="location">New Location</a> </nav>
+					</div>
+				</div>
 
-          <div class="inner cover">
-            <h1 class="cover-heading"><c:out value="${Question.getPrompt1()}"></c:out></h1>
-            
-            <form:form method="get" action="answer1" commandName="activityQuery">
+				<div class="inner cover">
+					<h1 class="cover-heading">Please enter your zipcode</h1>
+					<br>
+					<h3>
+						We need your location.<br>
 
-			<br>
-			<br>
-			<%-- <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1a}" class="btn btn-lg btn-secondary"/>
-			<br>
-			<br>
-			<%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1b}" class="btn btn-lg btn-secondary"/>
-			<br>
-			<br>
-			<br>
-			<input type="submit" name="answer1" value="${Question.supriseMe}" class="btn btn-lg btn-secondary"/>
-			<br><br>
-			<!-- <input type="submit" value="Submit"/> -->
-		</form:form>
-          
-          </div>
+					</h3>
+					<br>
+					<div align="center">
 
-          <div class="mastfoot">
-            <div class="inner">
-            <p>${activityQuery.getWeather().getCityName()}  ${activityQuery.getWeather().getWeatherInF()}</p>
-              <p>${activityQuery.getWeather().getWeatherDescription()}
-					<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-				
-					Low: ${activityQuery.getWeather().getLowTemp()} 
-					High: ${activityQuery.getWeather().getHighTemp()}<br>
-					Wind: ${activityQuery.getWeather().getWindSpeed()}<br>
-				</p>
-            </div>
-          </div>
+						<form:form method="get" action="zipcode"
+							commandName="activityQuery">
 
-        </div>
+							<h5>Zipcode:</h5>
+							<form:input type="text" id="ex1" path="zipcode" size="5"
+								placeholder="" class="form-control" />
+							<form:errors path="zipcode" cssClass="error" />
+							<br>
+							<input type="submit" value="Enter"
+								class="btn btn-lg btn-secondary" />
+						</form:form>
+					</div>
 
-      </div>
+					<br>
 
-    </div>
+				</div>
 
-    <!-- Bootstrap core JavaScript
+
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="resources/Cover Template for Bootstrap_files/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>

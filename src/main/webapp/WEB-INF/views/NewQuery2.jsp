@@ -27,7 +27,7 @@
     <jsp:useBean id="Question" class="com.krho.finalproject.Question"></jsp:useBean>
 	<jsp:setProperty property="*" name="Question" />
 	
-    <title>${Question.getPrompt1()}</title>
+    <title>${Question.getPrompt2()}</title>
   </head>
 
   <body>
@@ -49,23 +49,21 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading"><c:out value="${Question.getPrompt1()}"></c:out></h1>
+            <h1 class="cover-heading"><c:out value="${Question.getPrompt2()}"></c:out></h1>
             
-            <form:form method="get" action="answer1" commandName="activityQuery">
+            <form:form method="get" action="answer2" commandName="activityQuery">
 
 			<br>
 			<br>
 			<%-- <form:radiobutton path="answer1" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1a}" class="btn btn-lg btn-secondary"/>
+			<input type="submit" name="answer2" value="${Question.choice2a}" class="btn btn-lg btn-secondary"/>
 			<br>
 			<br>
 			<%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
-			<input type="submit" name="answer1" value="${Question.choice1b}" class="btn btn-lg btn-secondary"/>
+			<input type="submit" name="answer2" value="${Question.choice2b}" class="btn btn-lg btn-secondary"/>
 			<br>
 			<br>
-			<br>
-			<input type="submit" name="answer1" value="${Question.supriseMe}" class="btn btn-lg btn-secondary"/>
-			<br><br>
+
 			<!-- <input type="submit" value="Submit"/> -->
 		</form:form>
           
