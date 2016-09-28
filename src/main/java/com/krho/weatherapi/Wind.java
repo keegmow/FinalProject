@@ -33,7 +33,7 @@ public class Wind {
      */
     @JsonProperty("speed")
     public double getSpeed() {
-        return speed;
+        return speed * 2.2369; //convert to mile per hour
     }
 
     /**

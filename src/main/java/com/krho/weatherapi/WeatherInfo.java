@@ -87,8 +87,10 @@ public String getLowTemp(){
 		return temp.setScale(0, BigDecimal.ROUND_CEILING).toString() + "&#8457";
 	}
 
-public double getWindSpeed(){
-	return inCity.getWind().getSpeed(); 
+public String getWindSpeed(){
+	double speed = inCity.getWind().getSpeed();
+	BigDecimal temp = new BigDecimal(speed);
+	return temp.setScale(0, BigDecimal.ROUND_CEILING) + " mph"; 
 	}
 
 public double Cloud(){
