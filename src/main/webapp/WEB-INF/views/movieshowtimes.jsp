@@ -18,7 +18,8 @@
 	<br />
 	<c:forEach var="i" items="${movies }">
 	<br />
-		<h2><c:out value="${i.getTitle()} "/></h2>
+		<h2><a href="<c:out value="${i.getOfficialUrl() }"/>"><c:out value="${i.getTitle()} "/></a></h2>
+		<!--  <h2><c:out value="${i.getTitle()} "/></h2> -->
 		<h3>Release Date: </h3> 
 			<c:out value="${i.getReleaseDate() }"/>
 		<h3>Description: </h3> 
@@ -31,7 +32,6 @@
 			<c:forEach var="j" items="${i.getTopCast() }">
 			<c:out value="${j }"/>
 			</c:forEach>
-		<h3>OfficialUrl: </h3> <a href="<c:out value="${i.getOfficialUrl() }"/>">click here</a>
 		<h3>Showtimes: </h3> 
 			<c:forEach var="j" items="${i.getShowtimes() }">
 			<c:out value="${j }"/><br />
