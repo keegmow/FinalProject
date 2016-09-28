@@ -188,7 +188,7 @@ public class HomeController {
 //		Activity activity = new Activity();
 //		System.out.println("answer 2: " + activity.buildQuery(actQuery));
 		
-		return new ModelAndView("query3","activityQuery", actQuery);
+		return new ModelAndView("NewQuery3","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer3", method = RequestMethod.GET)
@@ -197,7 +197,7 @@ public class HomeController {
 //		Activity activity = new Activity();
 //		System.out.println("answer 3: " + activity.buildQuery(actQuery));
 		
-		return new ModelAndView("query4","activityQuery", actQuery);
+		return new ModelAndView("NewQuery4","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer4", method = RequestMethod.GET)
@@ -206,7 +206,7 @@ public class HomeController {
 //		Activity activity = new Activity();
 //		System.out.println("answer 4: " + activity.buildQuery(actQuery));
 		
-		return new ModelAndView("query5","activityQuery", actQuery);
+		return new ModelAndView("NewQuery5","activityQuery", actQuery);
 	}
 	
 	@RequestMapping(value = "/answer5", method = RequestMethod.GET)
@@ -240,22 +240,22 @@ public class HomeController {
 			List <Movie> movies = result.getMovie();
 			
 			model.addAttribute("movies", movies);
-			return new ModelAndView("movieshowtimes");
+			return new ModelAndView("movieshowtimes1");
 		} else if (activity.equalsIgnoreCase("Festival")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
 			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
-			return new ModelAndView("eventfulResults");	
+			return new ModelAndView("eventfulResults1");	
 		} else if (activity.equalsIgnoreCase("Concert")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
 			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
-			return new ModelAndView("eventfulResults");
+			return new ModelAndView("eventfulResults1");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
 			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
-			return new ModelAndView("eventfulResults");
+			return new ModelAndView("eventfulResults1");
 		} else if (activity.equalsIgnoreCase("Read a random Wikipedia page")) {
 			String projectUrl = "https://en.wikipedia.org/wiki/Special:Random";
             return new ModelAndView("redirect:" + projectUrl);
