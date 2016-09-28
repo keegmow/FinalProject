@@ -27,66 +27,103 @@
     <jsp:useBean id="Question" class="com.krho.finalproject.Question"></jsp:useBean>
 	<jsp:setProperty property="*" name="Question" />
 	
-    <title>Moives Showtimes</title>
+    <title>Embark: Movies Showtimes</title>
   </head>
 
-  <body>
+<body>
 
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-       
-
-          <div class="inner cover">
-            <h1 class="cover-heading">Movie Showtimes</h1>
-            
-            
-	<br />
-	<c:forEach var="i" items="${movies }">
-	<br />
-		<h3><a href="<c:out value="${i.getOfficialUrl() }"/>"><c:out value="${i.getTitle()} "/></a></h3>
-		<!--  <h2><c:out value="${i.getTitle()} "/></h2> -->
-		<h4>Release Date: </h4> 
-			<c:out value="${i.getReleaseDate() }"/>
-		<h4>Description: </h4> 
-			<c:out value="${i.getLongDescription() }"/>
-		<h3>Genres: </h3> 
-		<c:forEach var="j" items="${i.getGenres() }">
-			<c:out value="${j }"/>
-			</c:forEach>
-		<h4>TopCast: </h4> 
-			<c:forEach var="j" items="${i.getTopCast() }">
-			<c:out value="${j }"/>
-			</c:forEach>
-		<h4>Showtimes: </h4> 
-			<c:forEach var="j" items="${i.getShowtimes() }">
-			<c:out value="${j }"/><br />
-			</c:forEach> 
-	</c:forEach>
-          
+	<div class="site-wrapper">
+		<div class="site-wrapper-inner">
+			<div class="cover-container">
+			<div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Embark</h3>
+              <nav class="nav nav-masthead">
+                <a class="nav-link" href="">Home</a>
+                <a class="nav-link" href="location">New Location</a>
+              </nav>
+            </div>
           </div>
+				<div class="inner cover">
+				<br>
+				<br>
+				<br>
+				<br>
+					<h1 class="cover-heading">Movie Showtimes</h1>
 
-         
 
-        </div>
+					<br />
+					<div class="panel-group">
+						<c:forEach var="i" items="${movies }">
+							<br />
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<a href="<c:out value="${i.getOfficialUrl() }"/>"><c:out
+											value="${i.getTitle()} " /></a>
+								</div>
+								<div class="panel-body">
+								<b>Release Date: </b><c:out value="${i.getReleaseDate() }" />
+								<br>
+								<br>
+								<b>Description:</b>
+								<c:out value="${i.getLongDescription() }" />
+								<br>
+								<br>
+								<b>Genres:</b><br>
+								<c:forEach var="j" items="${i.getGenres() }">
+									<c:out value="${j }" />
+									<br>
+								</c:forEach>
+								<br>
+								<br>
+								<b>TopCast:</b><br>
+								<c:forEach var="j" items="${i.getTopCast() }">
+									<c:out value="${j }" />
+									<br>
+								</c:forEach>
+								<br>
+								<br>
+								<b>Showtimes:</b><br>
+								
+								<c:set var ="theatre" value=""/>
+								<c:forEach var="j" items="${i.getShowtimes() }">
+									
+									<c:if test="${!theatre.equals(j.getTheatreName())}">
+										<c:if test="${!theatre.isEmpty()}">
+											<br>
+										</c:if>
+										<c:out value="${j.getTheatreName()}"/>
+										<c:out value=": "/>
+										<c:set var ="theatre" value="${j.getTheatreName()}"/>
+									</c:if>
+									<c:out value="${j.getDateTime()}"/><c:out value=", "/>								</c:forEach>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-      </div>
-
-    </div>
-
-    <!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="resources/Cover Template for Bootstrap_files/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="resources/Cover Template for Bootstrap_files/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
-    <script src="resources/Cover Template for Bootstrap_files/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="resources/Cover Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
-  
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="resources/Cover Template for Bootstrap_files/jquery.min.js"
+		integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
+		crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	<script
+		src="resources/Cover Template for Bootstrap_files/tether.min.js"
+		integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+		crossorigin="anonymous"></script>
+	<script
+		src="resources/Cover Template for Bootstrap_files/bootstrap.min.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script
+		src="resources/Cover Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+
 
 </body>
 </html>

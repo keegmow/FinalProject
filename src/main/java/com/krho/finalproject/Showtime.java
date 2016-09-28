@@ -40,8 +40,15 @@ this.theatre = theatre;
 * The dateTime
 */
 public String getDateTime() {
-return dateTime;
+return dateTime.substring(dateTime.indexOf('T')+1);
 }
+
+public String getTheatreName() {
+	return theatre.toString();
+}
+
+
+
 
 /**
 *
@@ -92,6 +99,23 @@ this.barg = barg;
 public String toString(){
 	return "Time: " + dateTime.substring(dateTime.indexOf('T')+1) + " " + this.theatre.toString();
 }
+
+//public String toString(){
+//	String theatreName = "";
+//	String showtimesString = "";
+//	
+//	for(int i = 0; i<)
+//		if(theatreName.isEmpty()) {
+//			theatreName = this.theatre.toString();
+//			showtimesString = theatreName + ": ";
+//		}else if (theatreName.equalsIgnoreCase(this.theatre.toString())) {
+//			showtimesString = dateTime.substring(dateTime.indexOf('T')+1) + ", ";
+//		} else {
+//			showtimesString += "";
+//			theatreName = "";
+//		}
+//	return showtimesString;
+//}
 
 public Map<String, Object> getAdditionalProperties() {
 return this.additionalProperties;

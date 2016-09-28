@@ -49,7 +49,7 @@ this.name = name;
 
 @Override
 public String toString(){
-	String str = " Theater Name: " + name;
+	String str = name;
 	return str;
 }
 
