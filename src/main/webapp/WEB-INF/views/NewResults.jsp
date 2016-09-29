@@ -27,7 +27,7 @@
     <jsp:useBean id="Question" class="com.krho.finalproject.Question"></jsp:useBean>
 	<jsp:setProperty property="*" name="Question" />
 	
-    <title>Embark: ${Question.getPrompt1()}</title>
+    <title>Embark: Results</title>
   </head>
 
   <body>
@@ -50,7 +50,10 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading"><c:out value="So, What do you want to do?"></c:out></h1>
+          <br>
+          
+          <br>
+            <h1 class="cover-heading"><c:out value="So, what do you want to do?"></c:out></h1>
             <br>
             <form:form method="get" action="activityChoice" commandName="">
 		<c:forEach items="${finalQuery}" var="act" end="5">
