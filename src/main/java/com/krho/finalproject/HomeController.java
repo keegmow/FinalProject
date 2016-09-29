@@ -106,12 +106,11 @@ public class HomeController {
 									@Valid @ModelAttribute("activityQuery") ActivityQuery actQuery,
 									BindingResult result,
 									Map<String, Object> model) {
-        if (actQuery.getZipcode().isEmpty()) {
         		if (result.hasErrors()) {
 //        			System.out.println(result);
                 return new ModelAndView("NewZipcode");
             }
-        }
+        
 
 		WeatherInfo weather = new WeatherInfo(actQuery.getZipcode());
         actQuery.setWeather(weather);
