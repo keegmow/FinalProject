@@ -39,9 +39,10 @@
             <div class="inner">
               <h3 class="masthead-brand">Embark</h3>
               <nav class="nav nav-masthead">
-                <a class="nav-link" href="">Home</a>
-                <a class="nav-link" href="location">New Location</a>
-              </nav>
+                <a class="nav-link" href="./">Home</a>
+				<a class="nav-link" href="location">New Location</a> 
+				<a class="nav-link" href="zipcode">New Query</a>
+				 </nav>
             </div>
           </div>
 				<div class="inner cover">
@@ -58,8 +59,9 @@
 							<br />
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<a href="<c:out value="${i.getOfficialUrl() }"/>"><c:out
+									<h4><b><a href="<c:out value="${i.getOfficialUrl() }"/>"><c:out
 											value="${i.getTitle()} " /></a>
+									</b></h4>
 								</div>
 								<div class="panel-body">
 								<b>Release Date: </b><c:out value="${i.getReleaseDate() }" />
@@ -67,6 +69,9 @@
 								<br>
 								<b>Description:</b>
 								<c:out value="${i.getLongDescription() }" />
+								
+								
+								
 								<br>
 								<br>
 								<b>Genres:</b><br>

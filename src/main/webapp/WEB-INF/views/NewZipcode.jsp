@@ -41,8 +41,11 @@
 				<div class="masthead clearfix">
 					<div class="inner">
 						<h3 class="masthead-brand">Embark</h3>
-						<nav class="nav nav-masthead"> <a class="nav-link" href="">Home</a>
-						<a class="nav-link" href="location">New Location</a> </nav>
+						<nav class="nav nav-masthead"> 
+						<a class="nav-link" href="./">Home</a>
+						<a class="nav-link active" href="location">New Location</a> 
+						<a class="nav-link" href="zipcode">New Query</a>
+						</nav>
 					</div>
 				</div>
 

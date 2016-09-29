@@ -27,7 +27,7 @@
     <jsp:useBean id="Question" class="com.krho.finalproject.Question"></jsp:useBean>
 	<jsp:setProperty property="*" name="Question" />
 	
-    <title>${Question.prompt4}</title>
+    <title>Embark: ${Question.prompt4}</title>
   </head>
 
   <body>
@@ -42,9 +42,10 @@
             <div class="inner">
               <h3 class="masthead-brand">Embark</h3>
               <nav class="nav nav-masthead">
-                <a class="nav-link" href="">Home</a>
-                <a class="nav-link" href="location">New Location</a>
-              </nav>
+               <a class="nav-link" href="./">Home</a>
+				<a class="nav-link" href="location">New Location</a> 
+				<a class="nav-link" href="zipcode">New Query</a>
+				 </nav>
             </div>
           </div>
 

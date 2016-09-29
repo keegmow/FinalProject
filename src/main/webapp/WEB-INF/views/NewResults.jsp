@@ -27,7 +27,7 @@
     <jsp:useBean id="Question" class="com.krho.finalproject.Question"></jsp:useBean>
 	<jsp:setProperty property="*" name="Question" />
 	
-    <title>Embark: ${Question.prompt3}</title>
+    <title>Embark: ${Question.getPrompt1()}</title>
   </head>
 
   <body>
@@ -45,44 +45,38 @@
                 <a class="nav-link" href="./">Home</a>
 				<a class="nav-link" href="location">New Location</a> 
 				<a class="nav-link" href="zipcode">New Query</a>
-				 </nav>
+				</nav>
             </div>
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading"><c:out value="${Question.getPrompt3()}"></c:out></h1>
-            
-            <form:form method="get" action="answer3" commandName="activityQuery">
-
-			<br>
-			<br>
-			<%-- <form:radiobutton path="answer4" value="${Question.choice1a}" label="${Question.choice1a}" /> --%>
-			<input type="submit" name="answer3" value="${Question.choice3a}" class="btn btn-lg btn-secondary"/>
-			<br>
-			<br>
-			<%-- <form:radiobutton path="answer1" value="${Question.choice1b}" label="${Question.choice1b}" /> --%>
-			<input type="submit" name="answer3" value="${Question.choice3b}" class="btn btn-lg btn-secondary"/>
-			<br>
-			<br>
-			<input type="submit" name="answer3" value="${Question.choice3c}" class="btn btn-lg btn-secondary"/>
-			<!-- <input type="submit" value="Submit"/> -->
-			<br>
-			<br>
-		</form:form>
+            <h1 class="cover-heading"><c:out value="So, What do you want to do?"></c:out></h1>
+            <br>
+            <form:form method="get" action="activityChoice" commandName="">
+		<c:forEach items="${finalQuery}" var="act" end="5">
+    			<td><input type="submit" name="activityParam" class="btn btn-lg btn-secondary" value="${act.getActivityName()}" /></td><br>
+		<br>
+		</c:forEach>
+		
+		<div class="h-divider"></div>
+		<br>
+		<c:if test="${finalQuery.size() > 5}">
+		<input type="button" value="More Ideas" class="btn btn-lg btn-secondary" onClick="window.location.reload()">
+		</c:if>
+		
+	</form:form>
           
           </div>
 
           <div class="mastfoot">
             <div class="inner">
-            <p>${activityQuery.getWeather().getCityName()}</p>
+            <p>${activityQuery.getWeather().getCityName()}  ${activityQuery.getWeather().getWeatherInF()}</p>
               <p>${activityQuery.getWeather().getWeatherDescription()}
 					<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-					
-					${activityQuery.getWeather().getWeatherInF()}
-					
+				
 					Low: ${activityQuery.getWeather().getLowTemp()} 
 					High: ${activityQuery.getWeather().getHighTemp()}<br>
-					Wind Speed: ${activityQuery.getWeather().getWindSpeed()} <br>
+					Wind: ${activityQuery.getWeather().getWindSpeed()}<br>
 				</p>
             </div>
           </div>

@@ -99,67 +99,20 @@ public class HomeController {
 		return new ModelAndView("NewZipcode", "activityQuery", actQuery);
 	}
 	
-	@RequestMapping(value="/concerts")
-	public String eventfulConcerts(Model model) {
 
-		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "concert", 20, 1);
-
-		model.addAttribute("results", result);
-//		for(Event e : result){
-//			System.out.println(e.getTitle());
-//		}
-		return "eventfulResults";
-	}
-	
-	@RequestMapping(value="/festivals")
-	public String eventfulFestivals(Model model) {
-
-		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "festival", 20, 1);
-
-		model.addAttribute("results", result);
-//		for(Event e : result){
-//			System.out.println(e.getTitle());
-//		}
-		return "eventfulResults";
-	}
-	
-	@RequestMapping(value="/sports")
-	public String eventfulSports(Model model) {
-
-		List <Event> result = Eventful.search("Detroit", APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23", "sport", 20, 1);
-
-		model.addAttribute("results", result);
-//		for(Event e : result){
-//			System.out.println(e.getTitle());
-//		}
-		return "eventfulResults";
-	}
-	
-	@RequestMapping(value="/movieshowtimes")
-	public String movieshowtimes(@ModelAttribute("activityQuery") ActivityQuery actQuery ,Model model) throws IOException {
-		MovieList result = MovieController.getMovieList(actQuery.getZipcode());
-		
-		List <Movie> movies = result.getMovie();
-		model.addAttribute("movies", movies);
-		return "movieshowtimes";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Map<String, Object> model) {
-		User user = new User();
-		model.put("userForm", user);
-		return "login";
-	}
 	
 	@RequestMapping(value = "/zipcode", method = RequestMethod.GET)
 	public ModelAndView startQuery (@ModelAttribute("userForm") User userForm,
 									@Valid @ModelAttribute("activityQuery") ActivityQuery actQuery,
 									BindingResult result,
 									Map<String, Object> model) {
-        if (result.hasErrors()) {
-        	System.out.println(result);
-            return new ModelAndView("NewZipcode");
+        if (actQuery.getZipcode().isEmpty()) {
+        		if (result.hasErrors()) {
+//        			System.out.println(result);
+                return new ModelAndView("NewZipcode");
+            }
         }
+
 		WeatherInfo weather = new WeatherInfo(actQuery.getZipcode());
         actQuery.setWeather(weather);
         
@@ -221,7 +174,7 @@ public class HomeController {
 		
 		Collections.shuffle(activities);
 	
-		return new ModelAndView("results","finalQuery", activities);
+		return new ModelAndView("NewResults","finalQuery", activities);
 	}
 	
 	@RequestMapping(value = "/redirect", method = RequestMethod.GET)
@@ -243,17 +196,17 @@ public class HomeController {
 			return new ModelAndView("movieshowtimes1");
 		} else if (activity.equalsIgnoreCase("Festival")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","festival", 20, 1);
-			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
+//			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults1");	
 		} else if (activity.equalsIgnoreCase("Concert")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","concert", 20, 1);
-			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
+//			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults1");
 		} else if (activity.equalsIgnoreCase("Sports Game")) {
 			List <Event> result = Eventful.search(ZipCodeDetails.getCityName(actQuery.getZipcode()), APISetDate.TODAY2 +"00-" + APISetDate.TODAY + "23","sport", 20, 1);
-			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
+//			System.out.println(ZipCodeDetails.getCityName(actQuery.getZipcode()));
 			model.addAttribute("results", result);
 			return new ModelAndView("eventfulResults1");
 		} else if (activity.equalsIgnoreCase("Read a random Wikipedia page")) {
@@ -268,15 +221,6 @@ public class HomeController {
 		
 		
 	}
-
-	@RequestMapping(value = "newQuery")
-	public String newQuery () {
-		return "NewQuery1";
-	}
-		
-
-	
-		
 		
 	
 }

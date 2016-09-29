@@ -42,22 +42,25 @@
             <div class="inner">
               <h3 class="masthead-brand">Embark</h3>
               <nav class="nav nav-masthead">
-                <a class="nav-link" href="">Home</a>
-                <a class="nav-link" href="location">New Location</a>
-              </nav>
+                <a class="nav-link active" href="./">Home</a>
+				<a class="nav-link" href="location">New Location</a> 
+				<a class="nav-link" href="zipcode">New Query</a>
+				 </nav>
             </div>
           </div>
 
           <div class="inner cover">
             <h1 class="cover-heading">Embark</h1>
-         		   <br>
+            <div class="h-divider"></div>
+         		   
 					<h3>
 						Have some free time? <br>
 						Don't know what to do? <br>
 					</h3>
 					<br>
 					<h5>
-						Our algorithm will give you suggestions of things to do based on your answers to our 4 to 5 questions.
+						Our algorithm will give you suggestions of things 
+						to do based on your answers to our questions.
 
 					</h5>
 					<br> 

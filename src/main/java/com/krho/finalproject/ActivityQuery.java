@@ -17,7 +17,7 @@ public class ActivityQuery {
 	
 	@NotNull(message = "Please enter 5 digit zipcode")
 	@Size(min=5, max=5, message = "Please enter 5 digit zipcode")
-	private String zipcode = null;
+	private String zipcode = "";
 	
 	private WeatherInfo weather;
 	

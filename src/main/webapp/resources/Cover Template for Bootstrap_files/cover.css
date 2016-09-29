@@ -6,7 +6,7 @@
 a,
 a:focus,
 a:hover {
-  color: #fff;
+  color: #333333;
 }
 
 /* Custom default button */
@@ -91,6 +91,28 @@ body {
 .nav-masthead .active {
   color: #fff;
   border-bottom-color: #fff;
+}
+
+
+
+.panel-body {
+	background:#aaaaaa;
+}
+
+.panel .panel-default .panel-heading .a{
+	color:#fff !important;
+}
+
+.form-control {
+	width: 100px;
+	text-align: center;
+}
+.h-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ height:1px;
+ width:100%;
+ border-top:1px solid gray;
 }
 
 @media (min-width: 48em) {
