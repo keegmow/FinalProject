@@ -50,7 +50,7 @@
 				</div>
 
 				<div class="inner cover">
-					<h1 class="cover-heading">Please enter your zipcode</h1>
+					<h1 class="cover-heading">Please enter your<br>zip code</h1>
 					<br>
 					<h3>
 						We need your location.<br>
@@ -62,7 +62,7 @@
 						<form:form method="get" action="zipcode"
 							commandName="activityQuery">
 
-							<h5>Zipcode:</h5>
+							<h5>Zip code:</h5>
 							<form:input type="text" id="ex1" path="zipcode" size="5"
 								placeholder="" class="form-control" />
 							<form:errors path="zipcode" cssClass="error" />
