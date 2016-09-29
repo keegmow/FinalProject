@@ -67,8 +67,13 @@ body {
   margin-bottom: 2rem;
 }
 
+h3.masthead-brand {
+	margin-top: 0;
+}
+
 .masthead-brand {
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .nav-masthead .nav-link {

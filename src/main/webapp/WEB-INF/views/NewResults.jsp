@@ -57,10 +57,10 @@
     			<td><input type="submit" name="activityParam" class="btn btn-lg btn-secondary" value="${act.getActivityName()}" /></td><br>
 		<br>
 		</c:forEach>
-		
+
+		<c:if test="${finalQuery.size() > 5}">
 		<div class="h-divider"></div>
 		<br>
-		<c:if test="${finalQuery.size() > 5}">
 		<input type="button" value="More Ideas" class="btn btn-lg btn-secondary" onClick="window.location.reload()">
 		</c:if>
 		
@@ -68,18 +68,7 @@
           
           </div>
 
-          <div class="mastfoot">
-            <div class="inner">
-            <p>${activityQuery.getWeather().getCityName()}  ${activityQuery.getWeather().getWeatherInF()}</p>
-              <p>${activityQuery.getWeather().getWeatherDescription()}
-					<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-				
-					Low: ${activityQuery.getWeather().getLowTemp()} 
-					High: ${activityQuery.getWeather().getHighTemp()}<br>
-					Wind: ${activityQuery.getWeather().getWindSpeed()}<br>
-				</p>
-            </div>
-          </div>
+          
 
         </div>
 
