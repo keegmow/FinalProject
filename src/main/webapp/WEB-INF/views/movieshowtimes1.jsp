@@ -59,7 +59,7 @@
 							<br />
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4><b><a href="<c:out value="${i.getOfficialUrl() }"/>"><c:out
+									<h4><b><a href="<c:out value="${i.getOfficialUrl() }"/>" target="_blank"><c:out
 											value="${i.getTitle()} " /></a>
 									</b></h4>
 								</div>
