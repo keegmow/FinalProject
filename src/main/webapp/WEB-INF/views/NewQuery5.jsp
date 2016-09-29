@@ -71,19 +71,21 @@
           </div>
 
           <div class="mastfoot">
-            <div class="inner">
-            <p>${activityQuery.getWeather().getCityName()}</p>
-              <p>${activityQuery.getWeather().getWeatherDescription()}
-					<img src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
-					
-					${activityQuery.getWeather().getWeatherInF()}
-					
-					Low: ${activityQuery.getWeather().getLowTemp()} 
-					High: ${activityQuery.getWeather().getHighTemp()}<br>
-					Wind Speed: ${activityQuery.getWeather().getWindSpeed()} <br>
-				</p>
-            </div>
-          </div>
+					<div class="inner">
+						<c:catch>
+							<p>${activityQuery.getWeather().getCityName()}
+								${activityQuery.getWeather().getWeatherInF()}</p>
+							<p>${activityQuery.getWeather().getWeatherDescription()}
+								<img
+									src="http://openweathermap.org/img/w/${activityQuery.getWeather().getIcon()}.png">
+
+								Low: ${activityQuery.getWeather().getLowTemp()} High:
+								${activityQuery.getWeather().getHighTemp()}<br> Wind:
+								${activityQuery.getWeather().getWindSpeed()}<br>
+							</p>
+						</c:catch>
+					</div>
+				</div>
 
         </div>
 
