@@ -53,16 +53,21 @@
             <h1 class="cover-heading">Embark</h1>
             <div class="h-divider"></div>
          		   
-					<h3>
+         		   <h3>"Less time searching,
+         		   <br>
+         		   more time doing."</h3>
+         		   
+					<!-- <h4>
 						Have some free time? <br>
 						Don't know what to do? <br>
-					</h3>
+					</h4> -->
 					<br>
-					<h5>
-						Our algorithm will give you suggestions of things 
+					<p>
+						Our algorithm will give you suggestions of things
+						<br>
 						to do based on your answers to our questions.
 
-					</h5>
+					</p>
 					<br> 
 					<a href="location">
 						<button type="button" class="btn btn-lg btn-secondary">Let's get started!</button>
